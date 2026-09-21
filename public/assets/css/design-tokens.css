@@ -1,0 +1,1375 @@
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Onest:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700;800;900&display=swap');
+
+/* ==========================================================================
+   LENIS SMOOTH SCROLLING CORE CSS
+   ========================================================================== */
+html.lenis, html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+.lenis.lenis-smooth iframe {
+  pointer-events: none;
+}
+
+/* ==========================================================================
+   BASE & DEFAULT VARIABLES (LUMINOUS, HIGH-CONTRAST LIGHT BY DEFAULT)
+   ========================================================================== */
+:root {
+  --background: #ffffff;
+  --foreground: #000000;       /* 100% Black for maximum readability */
+  --muted: #1e293b;            /* Deep Slate 800: High contrast, dark and sharp */
+  --muted-bg: #f1f5f9;         /* Clean slate surface */
+  --card-bg: #ffffff;
+  --card-border: #cbd5e1;
+  --border: #cbd5e1;
+  
+  --accent: #0f172a;
+  --accent-foreground: #ffffff;
+  --theme-highlight: #b45309;
+
+  --font-onest: 'Onest', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+  --font-grotesk: 'Space Grotesk', sans-serif;
+  --font-sans: 'Plus Jakarta Sans', sans-serif;
+
+  --ease-entrance: cubic-bezier(0.2, 0, 0, 1);
+  --duration-fast: 150ms;
+  --duration-normal: 250ms;
+  --leading-display: 1.12;
+}
+
+/* Optional Dark Mode (Only active if user explicitly toggles theme) */
+[data-theme="dark"] {
+  --background: #09090b;
+  --foreground: #ffffff;
+  --muted: #e2e8f0;            /* Crisp slate-200: Ultra high contrast against dark */
+  --muted-bg: #18181b;
+  --card-bg: #121214;
+  --card-border: #3f3f46;
+  --border: #3f3f46;
+  --accent: #ffffff;
+  --accent-foreground: #09090b;
+}
+
+/* ==========================================================================
+   UNIVERSAL CONTRAST ENFORCEMENT (Fixes invisible text on all sections)
+   ========================================================================== */
+body {
+  margin: 0;
+  padding: 0;
+  background-color: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-onest);
+  line-height: 1.6;
+  overflow-x: hidden;
+  transition: background-color var(--duration-normal) var(--ease-entrance),
+              color var(--duration-normal) var(--ease-entrance);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: var(--foreground);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
+/* Universal contrast enforcement: clean high-contrast text by default */
+.text-muted, p.text-muted, div.text-muted, span.text-muted, li.text-muted {
+  color: var(--muted);
+  opacity: 1;
+}
+
+.text-dark {
+  color: var(--foreground) !important;
+}
+
+.lead {
+  color: var(--muted);
+  font-weight: 400;
+  line-height: 1.65;
+}
+
+/* Enforce high contrast on dark sections, CTA, footers, and overlays */
+.text-white .lead,
+.cta-section .lead,
+.hero-section.text-white .lead,
+footer .lead,
+[data-bs-theme="dark"] .lead {
+  color: rgba(255, 255, 255, 0.88) !important;
+}
+
+.text-white .text-white-50,
+.cta-section .text-white-50,
+.hero-section.text-white .text-white-50,
+footer .text-white-50 {
+  color: rgba(255, 255, 255, 0.78) !important;
+}
+
+.leading-display {
+  line-height: var(--leading-display);
+}
+
+/* ==========================================================================
+   MOTION & SPRING ENGINE STYLING
+   ========================================================================== */
+.spring-char {
+  display: inline-block;
+  will-change: transform, opacity;
+}
+
+.spring-word {
+  display: inline-block;
+  white-space: nowrap;
+}
+
+.spring-in-view {
+  opacity: 0;
+  transform: translateY(35px);
+  will-change: transform, opacity;
+}
+
+.spring-in-view.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Base Card & Badges */
+.spring-card {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 1rem;
+  box-shadow: 0 4px 20px -4px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s var(--ease-entrance);
+  will-change: transform;
+}
+
+.spring-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.4rem 0.95rem;
+  font-size: 0.82rem;
+  font-weight: 600;
+  border-radius: 9999px;
+  background: var(--muted-bg);
+  color: var(--foreground);
+  border: 1px solid var(--border);
+  letter-spacing: 0.04em;
+}
+
+.badge-dot {
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 50%;
+  background: #10b981;
+}
+
+.spring-btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  background: var(--accent);
+  color: var(--accent-foreground);
+  font-weight: 600;
+  font-size: 0.95rem;
+  padding: 0.85rem 1.85rem;
+  border-radius: 9999px;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.12);
+  transition: all 0.25s var(--ease-entrance);
+  will-change: transform;
+}
+
+.spring-btn-outline {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  background: transparent;
+  color: var(--foreground);
+  font-weight: 600;
+  font-size: 0.95rem;
+  padding: 0.85rem 1.85rem;
+  border-radius: 9999px;
+  text-decoration: none;
+  border: 1.5px solid var(--border);
+  cursor: pointer;
+  transition: all 0.25s var(--ease-entrance);
+  will-change: transform;
+}
+
+/* ==========================================================================
+   THEME PRESET 1 — 🏗️ INDUSTRIALIST MODERN
+   Vibe: Studio Arsitek, Urban Loft, Blueprint Grid, Warm Copper & Concrete
+   ========================================================================== */
+html[data-theme-preset="industrialist"] {
+  --background: #fbfbfa;
+  --foreground: #1c1917;
+  --muted: #57534e;            /* Stone-600 */
+  --muted-bg: #f5f5f4;         /* Stone-100 */
+  --card-bg: #ffffff;
+  --card-border: #e7e5e4;
+  --border: #e7e5e4;
+  --accent: #b45309;           /* Burnished Copper / Amber Bronze */
+  --accent-foreground: #ffffff;
+}
+
+/* Technical Blueprint Dot Grid on Hero & Body */
+html[data-theme-preset="industrialist"] body {
+  background-color: #fbfbfa !important;
+  background-image: radial-gradient(#94a3b8 1.8px, transparent 1.8px) !important;
+  background-size: 26px 26px !important;
+}
+
+html[data-theme-preset="industrialist"] .badge-dot {
+  background: #d97706;
+  box-shadow: 0 0 10px rgba(217, 119, 6, 0.6);
+}
+
+html[data-theme-preset="industrialist"] .spring-badge {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  border-radius: 6px;
+  background: #ffffff;
+  border: 1.5px solid #cbd5e1;
+  color: #0f172a;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
+}
+
+/* Industrial Card with Hairline Precision */
+html[data-theme-preset="industrialist"] .spring-card {
+  border-radius: 12px;
+  border: 1.5px solid #e2e8f0;
+  background: #ffffff;
+  box-shadow: 0 4px 20px -2px rgba(15, 23, 42, 0.06);
+}
+
+html[data-theme-preset="industrialist"] .spring-card:hover {
+  border-color: #b45309;
+  box-shadow: 0 16px 36px -8px rgba(180, 83, 9, 0.18);
+}
+
+/* Monospace technical property specs */
+html[data-theme-preset="industrialist"] .spec-chip {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: #0f172a !important;
+  background: #f8fafc;
+  padding: 0.35rem 0.65rem;
+  border-radius: 6px;
+  border: 1px solid #e2e8f0;
+}
+
+html[data-theme-preset="industrialist"] .spring-btn-primary {
+  background: #b45309;
+  color: #ffffff;
+  border-radius: 8px;
+  font-weight: 700;
+  box-shadow: 0 4px 16px rgba(180, 83, 9, 0.25);
+}
+
+html[data-theme-preset="industrialist"] .spring-btn-primary:hover {
+  background: #92400e;
+  box-shadow: 0 8px 24px rgba(180, 83, 9, 0.35);
+}
+
+html[data-theme-preset="industrialist"] .spring-btn-outline {
+  border: 1.5px solid #cbd5e1;
+  border-radius: 8px;
+  color: #0f172a;
+  background: #ffffff;
+}
+
+html[data-theme-preset="industrialist"] .spring-btn-outline:hover {
+  border-color: #b45309;
+  color: #b45309;
+  background: #fffbeb;
+}
+
+/* ==========================================================================
+   THEME PRESET 2 — 🏛️ ARCHITECTURAL BRUTALIST
+   Vibe: Monolithic Raw Concrete, Stark 0px Sharp Geometry, 3px Solid Black Borders, Hard Drop Shadows
+   ========================================================================== */
+html[data-theme-preset="brutalist"] {
+  --background: #f5f5f3;
+  --foreground: #000000;
+  --muted: #18181b;            /* Stark 100% black contrast */
+  --muted-bg: #e4e4e7;
+  --card-bg: #ffffff;
+  --card-border: #000000;
+  --border: #000000;
+  --accent: #000000;
+  --accent-foreground: #ffffff;
+  --font-onest: 'Space Grotesk', -apple-system, sans-serif;
+}
+
+html[data-theme-preset="brutalist"] body {
+  background-color: #f5f5f3;
+  background-image: none;
+  font-family: 'Space Grotesk', sans-serif !important;
+}
+
+/* STRICT ZERO BORDER-RADIUS ON EVERYTHING */
+html[data-theme-preset="brutalist"] *,
+html[data-theme-preset="brutalist"] *::before,
+html[data-theme-preset="brutalist"] *::after {
+  border-radius: 0px !important;
+}
+
+/* MONOLITHIC 3PX THICK BLACK BORDER & 7PX HARD DROP-SHADOW */
+html[data-theme-preset="brutalist"] .spring-card {
+  border: 3px solid #000000 !important;
+  box-shadow: 7px 7px 0px #000000 !important;
+  background: #ffffff !important;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+html[data-theme-preset="brutalist"] .spring-card:hover {
+  transform: translate(-3px, -3px);
+  box-shadow: 11px 11px 0px #000000 !important;
+}
+
+/* BRUTALIST MASSIVE UPPERCASE HEADINGS */
+html[data-theme-preset="brutalist"] h1,
+html[data-theme-preset="brutalist"] h2,
+html[data-theme-preset="brutalist"] h3,
+html[data-theme-preset="brutalist"] h4 {
+  font-family: 'Space Grotesk', sans-serif !important;
+  text-transform: uppercase !important;
+  font-weight: 900 !important;
+  letter-spacing: -0.03em !important;
+  color: #000000 !important;
+}
+
+/* SOLID STARK BADGES WITH 2.5PX BORDER & HAZARD YELLOW */
+html[data-theme-preset="brutalist"] .spring-badge {
+  border: 2.5px solid #000000 !important;
+  background: #facc15 !important; /* Electric Hazard Yellow */
+  color: #000000 !important;
+  font-weight: 900 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.08em !important;
+  box-shadow: 4px 4px 0px #000000 !important;
+}
+
+html[data-theme-preset="brutalist"] .badge-dot {
+  background: #000000 !important;
+  border-radius: 0px !important;
+  box-shadow: none;
+}
+
+/* BRUTALIST PUSH BUTTONS */
+html[data-theme-preset="brutalist"] .spring-btn-primary {
+  background: #000000 !important;
+  color: #ffffff !important;
+  border: 3px solid #000000 !important;
+  box-shadow: 5px 5px 0px #ff3d00 !important;
+  font-weight: 900 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.06em !important;
+}
+
+html[data-theme-preset="brutalist"] .spring-btn-primary:hover {
+  background: #ff3d00 !important;
+  color: #ffffff !important;
+  transform: translate(2px, 2px);
+  box-shadow: 3px 3px 0px #000000 !important;
+}
+
+html[data-theme-preset="brutalist"] .spring-btn-outline {
+  background: #ffffff !important;
+  color: #000000 !important;
+  border: 3px solid #000000 !important;
+  box-shadow: 5px 5px 0px #000000 !important;
+  font-weight: 900 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.06em !important;
+}
+
+html[data-theme-preset="brutalist"] .spring-btn-outline:hover {
+  background: #000000 !important;
+  color: #ffffff !important;
+  transform: translate(2px, 2px);
+  box-shadow: 3px 3px 0px #000000 !important;
+}
+
+html[data-theme-preset="brutalist"] .spec-chip {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 800;
+  text-transform: uppercase;
+  color: #000000 !important;
+  background: #e4e4e7;
+  padding: 0.35rem 0.65rem;
+  border: 1.5px solid #000000;
+}
+
+/* ==========================================================================
+   COMPREHENSIVE BOOTSTRAP OVERRIDES FOR 🏗️ INDUSTRIALIST THEME
+   ========================================================================== */
+html[data-theme-preset="industrialist"] {
+  --bs-primary: #b45309;
+  --bs-primary-rgb: 180, 83, 9;
+  --bs-secondary: #0f172a;
+  --bs-secondary-rgb: 15, 23, 42;
+}
+
+html[data-theme-preset="industrialist"] body {
+  font-family: 'Onest', 'Plus Jakarta Sans', sans-serif;
+  color: #1c1917;
+}
+
+/* Cards */
+html[data-theme-preset="industrialist"] .card,
+html[data-theme-preset="industrialist"] .card-custom {
+  border-radius: 12px !important;
+  border: 1.5px solid #cbd5e1 !important;
+  border-top: 3.5px solid #b45309 !important;
+  background: #ffffff !important;
+  box-shadow: 0 6px 24px -2px rgba(180, 83, 9, 0.08) !important;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+html[data-theme-preset="industrialist"] .card:hover,
+html[data-theme-preset="industrialist"] .card-custom:hover {
+  border-color: #b45309 !important;
+  transform: translateY(-4px) !important;
+  box-shadow: 0 16px 36px -6px rgba(180, 83, 9, 0.22) !important;
+}
+
+html[data-theme-preset="industrialist"] .card .bg-light,
+html[data-theme-preset="industrialist"] .card-custom .bg-light {
+  font-family: 'JetBrains Mono', monospace !important;
+  border: 1px solid #e7e5e4 !important;
+  background: #fafaf9 !important;
+}
+
+/* Buttons */
+html[data-theme-preset="industrialist"] .btn-primary {
+  background: #b45309 !important;
+  border-color: #b45309 !important;
+  color: #ffffff !important;
+  border-radius: 8px !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.01em !important;
+  box-shadow: 0 4px 14px rgba(180, 83, 9, 0.25) !important;
+  transition: all 0.2s ease !important;
+}
+
+html[data-theme-preset="industrialist"] .btn-primary:hover {
+  background: #92400e !important;
+  border-color: #92400e !important;
+  box-shadow: 0 6px 20px rgba(180, 83, 9, 0.35) !important;
+  transform: translateY(-1px) !important;
+}
+
+html[data-theme-preset="industrialist"] .btn-outline-primary {
+  border: 1.5px solid #cbd5e1 !important;
+  border-radius: 8px !important;
+  color: #0f172a !important;
+  background: #ffffff !important;
+  font-weight: 600 !important;
+  transition: all 0.2s ease !important;
+}
+
+html[data-theme-preset="industrialist"] .btn-outline-primary:hover {
+  border-color: #b45309 !important;
+  color: #b45309 !important;
+  background: #fffbeb !important;
+}
+
+/* Badges */
+html[data-theme-preset="industrialist"] .badge {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.74rem;
+  letter-spacing: 0.03em;
+  border-radius: 6px !important;
+}
+
+html[data-theme-preset="industrialist"] .badge-primary-soft {
+  background-color: #fffbeb !important;
+  color: #b45309 !important;
+  border: 1px solid #fde68a !important;
+}
+
+/* Navbar */
+html[data-theme-preset="industrialist"] .navbar {
+  border-bottom: 1.5px solid #e2e8f0 !important;
+  background-color: rgba(255, 255, 255, 0.95) !important;
+  backdrop-filter: blur(10px) !important;
+}
+
+html[data-theme-preset="industrialist"] .navbar-brand {
+  font-family: 'Onest', sans-serif !important;
+  font-weight: 800 !important;
+  color: #1c1917 !important;
+}
+
+html[data-theme-preset="industrialist"] .navbar-brand i {
+  color: #b45309 !important;
+}
+
+/* Chat Widget */
+html[data-theme-preset="industrialist"] .va-floating-btn {
+  background: linear-gradient(135deg, #b45309, #d97706) !important;
+  border-radius: 14px !important;
+  box-shadow: 0 8px 24px rgba(180, 83, 9, 0.4) !important;
+}
+
+html[data-theme-preset="industrialist"] .va-chat-box {
+  border-radius: 16px !important;
+  border: 1.5px solid #e2e8f0 !important;
+}
+
+html[data-theme-preset="industrialist"] .va-chat-header {
+  background: linear-gradient(135deg, #0f172a, #1e293b) !important;
+  border-bottom: 2px solid #b45309 !important;
+}
+
+html[data-theme-preset="industrialist"] .va-bubble-user {
+  background: #b45309 !important;
+  border-radius: 12px 12px 2px 12px !important;
+}
+
+/* Modal */
+html[data-theme-preset="industrialist"] .modal-content {
+  border-radius: 16px !important;
+  border: 1.5px solid #e2e8f0 !important;
+}
+
+/* Industrialist Section Styling */
+html[data-theme-preset="industrialist"] .hero-section {
+  background: transparent !important;
+}
+
+html[data-theme-preset="industrialist"] .featured-section {
+  background: transparent !important;
+}
+
+html[data-theme-preset="industrialist"] .usp-section {
+  background: rgba(245, 245, 244, 0.75) !important;
+  backdrop-filter: blur(10px) !important;
+  border-top: 1.5px solid #e7e5e4 !important;
+  border-bottom: 1.5px solid #e7e5e4 !important;
+}
+
+html[data-theme-preset="industrialist"] .cta-section {
+  background: linear-gradient(135deg, #78350f, #b45309) !important;
+  border-top: 2px solid #d97706 !important;
+}
+
+html[data-theme-preset="industrialist"] .text-primary {
+  color: #b45309 !important;
+}
+
+html[data-theme-preset="industrialist"] .bg-primary {
+  background-color: #b45309 !important;
+}
+
+html[data-theme-preset="industrialist"] .border-primary {
+  border-color: #b45309 !important;
+}
+
+html[data-theme-preset="industrialist"] .rounded-pill {
+  border-radius: 8px !important;
+}
+
+html[data-theme-preset="industrialist"] .rounded-4 {
+  border-radius: 14px !important;
+}
+
+html[data-theme-preset="industrialist"] .rounded-3 {
+  border-radius: 10px !important;
+}
+
+/* ==========================================================================
+   COMPREHENSIVE BOOTSTRAP OVERRIDES FOR 🏛️ BRUTALIST THEME
+   ========================================================================== */
+html[data-theme-preset="brutalist"] {
+  --bs-primary: #000000;
+  --bs-primary-rgb: 0, 0, 0;
+  --bs-secondary: #ff3d00;
+  --bs-secondary-rgb: 255, 61, 0;
+}
+
+html[data-theme-preset="brutalist"] .hero-section {
+  background: #f4f4f0 !important;
+  border-bottom: 3.5px solid #000000 !important;
+}
+
+html[data-theme-preset="brutalist"] .featured-section {
+  background: #ebebe6 !important;
+}
+
+html[data-theme-preset="brutalist"] .usp-section {
+  background: #ffffff !important;
+  border-top: 4px solid #000000 !important;
+  border-bottom: 4px solid #000000 !important;
+}
+
+html[data-theme-preset="brutalist"] .cta-section {
+  background: #000000 !important;
+  border-top: 4px solid #ff3d00 !important;
+}
+
+html[data-theme-preset="brutalist"] .text-primary {
+  color: #000000 !important;
+}
+
+html[data-theme-preset="brutalist"] .bg-primary {
+  background-color: #000000 !important;
+}
+
+html[data-theme-preset="brutalist"] .border-primary {
+  border-color: #000000 !important;
+}
+
+html[data-theme-preset="brutalist"] body {
+  font-family: 'Space Grotesk', -apple-system, sans-serif !important;
+  background-color: #f5f5f3 !important;
+  color: #000000 !important;
+}
+
+/* Strict Zero Radius on ALL components */
+html[data-theme-preset="brutalist"] .card,
+html[data-theme-preset="brutalist"] .card-custom,
+html[data-theme-preset="brutalist"] .btn,
+html[data-theme-preset="brutalist"] .badge,
+html[data-theme-preset="brutalist"] .modal-content,
+html[data-theme-preset="brutalist"] .form-control,
+html[data-theme-preset="brutalist"] .form-select,
+html[data-theme-preset="brutalist"] .dropdown-menu,
+html[data-theme-preset="brutalist"] .input-group-text,
+html[data-theme-preset="brutalist"] img,
+html[data-theme-preset="brutalist"] .va-floating-btn,
+html[data-theme-preset="brutalist"] .va-chat-box,
+html[data-theme-preset="brutalist"] .va-bubble-bot,
+html[data-theme-preset="brutalist"] .va-bubble-user,
+html[data-theme-preset="brutalist"] .alert {
+  border-radius: 0px !important;
+}
+
+/* Brutalist Cards */
+html[data-theme-preset="brutalist"] .card,
+html[data-theme-preset="brutalist"] .card-custom {
+  border: 3px solid #000000 !important;
+  box-shadow: 6px 6px 0px #000000 !important;
+  background: #ffffff !important;
+  transition: transform 0.15s ease, box-shadow 0.15s ease !important;
+}
+
+html[data-theme-preset="brutalist"] .card:hover,
+html[data-theme-preset="brutalist"] .card-custom:hover {
+  transform: translate(-3px, -3px) !important;
+  box-shadow: 10px 10px 0px #000000 !important;
+}
+
+/* Brutalist Typography */
+html[data-theme-preset="brutalist"] h1:not([style*="color"]):not(.text-white),
+html[data-theme-preset="brutalist"] h2:not([style*="color"]):not(.text-white),
+html[data-theme-preset="brutalist"] h3:not([style*="color"]):not(.text-white),
+html[data-theme-preset="brutalist"] h4:not([style*="color"]):not(.text-white),
+html[data-theme-preset="brutalist"] h5:not([style*="color"]):not(.text-white),
+html[data-theme-preset="brutalist"] .navbar-brand:not([style*="color"]) {
+  font-family: 'Space Grotesk', sans-serif;
+  text-transform: uppercase;
+  font-weight: 900;
+  letter-spacing: -0.02em;
+  color: #000000;
+}
+
+/* Brutalist Buttons */
+html[data-theme-preset="brutalist"] .btn-primary {
+  background: #000000 !important;
+  color: #ffffff !important;
+  border: 3px solid #000000 !important;
+  box-shadow: 4px 4px 0px #ff3d00 !important;
+  font-weight: 900 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.05em !important;
+  transition: all 0.15s ease !important;
+}
+
+html[data-theme-preset="brutalist"] .btn-primary:hover {
+  background: #ff3d00 !important;
+  color: #ffffff !important;
+  border-color: #000000 !important;
+  transform: translate(2px, 2px) !important;
+  box-shadow: 2px 2px 0px #000000 !important;
+}
+
+html[data-theme-preset="brutalist"] .btn-outline-primary,
+html[data-theme-preset="brutalist"] .btn-outline-light {
+  background: #ffffff !important;
+  color: #000000 !important;
+  border: 3px solid #000000 !important;
+  box-shadow: 4px 4px 0px #000000 !important;
+  font-weight: 900 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.04em !important;
+  transition: all 0.15s ease !important;
+}
+
+html[data-theme-preset="brutalist"] .btn-outline-primary:hover,
+html[data-theme-preset="brutalist"] .btn-outline-light:hover {
+  background: #000000 !important;
+  color: #ffffff !important;
+  transform: translate(2px, 2px) !important;
+  box-shadow: 2px 2px 0px #000000 !important;
+}
+
+html[data-theme-preset="brutalist"] .btn-success {
+  background: #22c55e !important;
+  color: #000000 !important;
+  border: 3px solid #000000 !important;
+  box-shadow: 4px 4px 0px #000000 !important;
+  font-weight: 900 !important;
+}
+
+html[data-theme-preset="brutalist"] .btn-success:hover {
+  background: #16a34a !important;
+  transform: translate(2px, 2px) !important;
+  box-shadow: 2px 2px 0px #000000 !important;
+}
+
+/* Brutalist Badges */
+html[data-theme-preset="brutalist"] .badge {
+  font-family: 'Space Grotesk', sans-serif !important;
+  border: 2px solid #000000 !important;
+  font-weight: 900 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.04em !important;
+  box-shadow: 2.5px 2.5px 0px #000000 !important;
+}
+
+html[data-theme-preset="brutalist"] .badge-primary-soft {
+  background-color: #facc15 !important;
+  color: #000000 !important;
+}
+
+/* Brutalist Navbar */
+html[data-theme-preset="brutalist"] .navbar {
+  border-bottom: 3.5px solid #000000 !important;
+  background-color: #ffffff !important;
+}
+
+html[data-theme-preset="brutalist"] .nav-link {
+  font-weight: 800 !important;
+  text-transform: uppercase !important;
+  font-size: 0.9rem !important;
+  letter-spacing: 0.03em !important;
+  color: #000000 !important;
+}
+
+html[data-theme-preset="brutalist"] .nav-link.active {
+  background: #facc15 !important;
+  color: #000000 !important;
+  border: 2px solid #000000 !important;
+  box-shadow: 2px 2px 0px #000000 !important;
+  padding: 0.35rem 0.85rem !important;
+}
+
+/* Brutalist Chat Widget */
+html[data-theme-preset="brutalist"] .va-floating-btn {
+  background: #ff3d00 !important;
+  color: #ffffff !important;
+  border: 3px solid #000000 !important;
+  box-shadow: 4px 4px 0px #000000 !important;
+}
+
+html[data-theme-preset="brutalist"] .va-chat-box {
+  border: 3.5px solid #000000 !important;
+  box-shadow: 8px 8px 0px #000000 !important;
+}
+
+html[data-theme-preset="brutalist"] .va-chat-header {
+  background: #000000 !important;
+  border-bottom: 3px solid #000000 !important;
+}
+
+html[data-theme-preset="brutalist"] .va-bubble-bot {
+  border: 2px solid #000000 !important;
+  box-shadow: 3px 3px 0px #000000 !important;
+}
+
+html[data-theme-preset="brutalist"] .va-bubble-user {
+  background: #000000 !important;
+  color: #ffffff !important;
+  border: 2px solid #000000 !important;
+  box-shadow: 3px 3px 0px #ff3d00 !important;
+}
+
+html[data-theme-preset="brutalist"] .va-quick-option {
+  border: 2px solid #000000 !important;
+  font-weight: 800 !important;
+  text-transform: uppercase !important;
+  box-shadow: 2px 2px 0px #000000 !important;
+}
+
+html[data-theme-preset="brutalist"] .va-quick-option:hover {
+  background: #facc15 !important;
+  color: #000000 !important;
+  transform: translate(1px, 1px) !important;
+  box-shadow: 1px 1px 0px #000000 !important;
+}
+
+/* Brutalist Modals */
+html[data-theme-preset="brutalist"] .modal-content {
+  border: 3.5px solid #000000 !important;
+  box-shadow: 10px 10px 0px #000000 !important;
+}
+
+/* Brutalist Footer */
+html[data-theme-preset="brutalist"] footer {
+  border-top: 4px solid #000000 !important;
+  background-color: #09090b !important;
+}
+
+/* ==========================================================================
+   LIVE THEME SWITCHER BAR COMPONENT (Floating Quick Toggle for Live Preview)
+   ========================================================================== */
+.live-theme-switcher-bar {
+  position: fixed;
+  bottom: 24px;
+  left: 24px;
+  z-index: 1060;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 8px;
+  background: #ffffff;
+  border: 2px solid #0f172a;
+  border-radius: 9999px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+  font-family: 'Space Grotesk', 'Onest', sans-serif;
+  backdrop-filter: blur(12px);
+  transition: all 0.25s ease;
+}
+
+html[data-theme-preset="brutalist"] .live-theme-switcher-bar {
+  border-radius: 0px !important;
+  border: 3px solid #000000 !important;
+  box-shadow: 5px 5px 0px #000000 !important;
+  background: #ffffff !important;
+}
+
+.live-theme-switcher-label {
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: #64748b;
+  padding: 0 6px 0 8px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+html[data-theme-preset="brutalist"] .live-theme-switcher-label {
+  color: #000000 !important;
+  font-weight: 900 !important;
+}
+
+.theme-preset-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 6px 14px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  border-radius: 9999px;
+  border: 1.5px solid transparent;
+  background: transparent;
+  color: #475569;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-decoration: none;
+}
+
+html[data-theme-preset="brutalist"] .theme-preset-btn {
+  border-radius: 0px !important;
+  font-weight: 900 !important;
+  text-transform: uppercase !important;
+}
+
+.theme-preset-btn:hover {
+  color: #0f172a;
+  background: #f1f5f9;
+}
+
+/* Active Industrialist Button */
+.theme-preset-btn.active[data-theme="industrialist"] {
+  background: #b45309;
+  color: #ffffff;
+  border-color: #b45309;
+  box-shadow: 0 2px 8px rgba(180, 83, 9, 0.35);
+}
+
+/* Active Brutalist Button */
+.theme-preset-btn.active[data-theme="brutalist"] {
+  background: #000000;
+  color: #ffffff;
+  border: 2px solid #000000;
+  box-shadow: 3px 3px 0px #ff3d00;
+}
+
+@media (max-width: 576px) {
+  .live-theme-switcher-bar {
+    left: 12px;
+    bottom: 96px;
+    padding: 4px 6px;
+  }
+  .live-theme-switcher-label {
+    display: none;
+  }
+  .theme-preset-btn {
+    padding: 5px 10px;
+    font-size: 0.75rem;
+  }
+}
+
+/* ==========================================================================
+   THE 6 OFFICIAL THEME PRESETS
+   ========================================================================== */
+
+/* ==========================================================================
+   THE 6 OFFICIAL THEME PRESETS — COMPREHENSIVE OVERRIDES
+   ========================================================================== */
+
+/* Universal Bootstrap color helper tied to active preset variables */
+html[data-theme-preset] .bg-primary { background-color: var(--bs-primary) !important; }
+html[data-theme-preset] .text-primary { color: var(--bs-primary) !important; }
+html[data-theme-preset] .border-primary { border-color: var(--bs-primary) !important; }
+html[data-theme-preset] .navbar-brand { color: var(--bs-primary) !important; }
+
+/* 1. MODERN RESIDENTIAL (Clean, Warm, Family, Whitespace, Soft Modern Cards) */
+html[data-theme-preset="modern-residential"] {
+  --background: #fafaf9;
+  --foreground: #0f172a;
+  --muted: #334155;
+  --card-bg: #ffffff;
+  --card-border: #e2e8f0;
+  --bs-primary: #1e3a8a;
+  --bs-primary-rgb: 30, 58, 138;
+  --bs-secondary: #0d9488;
+  --bs-secondary-rgb: 13, 148, 136;
+}
+html[data-theme-preset="modern-residential"] body {
+  font-family: 'Plus Jakarta Sans', sans-serif !important;
+  background-color: #fafaf9 !important;
+  color: #334155 !important;
+}
+html[data-theme-preset="modern-residential"] .card,
+html[data-theme-preset="modern-residential"] .card-custom {
+  border-radius: 18px !important;
+  border: 1px solid #e2e8f0 !important;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05) !important;
+}
+html[data-theme-preset="modern-residential"] .rounded-4 {
+  border-radius: 18px !important;
+}
+html[data-theme-preset="modern-residential"] .rounded-3 {
+  border-radius: 14px !important;
+}
+html[data-theme-preset="modern-residential"] .btn-primary,
+html[data-theme-preset="modern-residential"] .btn-outline-primary,
+html[data-theme-preset="modern-residential"] .rounded-pill {
+  border-radius: 9999px !important;
+}
+html[data-theme-preset="modern-residential"] .btn-primary {
+  background-color: #1e3a8a !important;
+  border-color: #1e3a8a !important;
+  color: #ffffff !important;
+}
+html[data-theme-preset="modern-residential"] .badge-primary-soft {
+  background-color: rgba(30, 58, 138, 0.12) !important;
+  color: #1e3a8a !important;
+}
+
+/* 2. SOFT BRUTALIST (Bold Typography, Strong Black Borders, Hard Shadows, 2px Geometry) */
+html[data-theme-preset="soft-brutalist"] {
+  --background: #f5f5f1;
+  --foreground: #000000;
+  --muted: #18181b;
+  --card-bg: #ffffff;
+  --card-border: #000000;
+  --bs-primary: #000000;
+  --bs-primary-rgb: 0, 0, 0;
+  --bs-secondary: #ff3d00;
+  --bs-secondary-rgb: 255, 61, 0;
+}
+html[data-theme-preset="soft-brutalist"] body {
+  font-family: 'Space Grotesk', sans-serif !important;
+  background-color: #f5f5f1 !important;
+  color: #000000 !important;
+}
+html[data-theme-preset="soft-brutalist"] h1:not([style*="color"]):not(.text-white),
+html[data-theme-preset="soft-brutalist"] h2:not([style*="color"]):not(.text-white),
+html[data-theme-preset="soft-brutalist"] h3:not([style*="color"]):not(.text-white),
+html[data-theme-preset="soft-brutalist"] h4:not([style*="color"]):not(.text-white),
+html[data-theme-preset="soft-brutalist"] .navbar-brand:not([style*="color"]) {
+  font-family: 'Space Grotesk', sans-serif;
+  text-transform: uppercase;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: #000000;
+}
+html[data-theme-preset="soft-brutalist"] .rounded-pill,
+html[data-theme-preset="soft-brutalist"] .rounded-4,
+html[data-theme-preset="soft-brutalist"] .rounded-3,
+html[data-theme-preset="soft-brutalist"] .rounded-2,
+html[data-theme-preset="soft-brutalist"] .btn,
+html[data-theme-preset="soft-brutalist"] .card,
+html[data-theme-preset="soft-brutalist"] .card-custom,
+html[data-theme-preset="soft-brutalist"] .badge,
+html[data-theme-preset="soft-brutalist"] .form-control,
+html[data-theme-preset="soft-brutalist"] .form-select,
+html[data-theme-preset="soft-brutalist"] .modal-content {
+  border-radius: 2px !important;
+}
+html[data-theme-preset="soft-brutalist"] .card,
+html[data-theme-preset="soft-brutalist"] .card-custom {
+  border: 2.5px solid #000000 !important;
+  box-shadow: 5px 5px 0px #000000 !important;
+  background: #ffffff !important;
+  transition: transform 0.15s ease, box-shadow 0.15s ease !important;
+}
+html[data-theme-preset="soft-brutalist"] .card:hover,
+html[data-theme-preset="soft-brutalist"] .card-custom:hover {
+  transform: translate(-2px, -2px) !important;
+  box-shadow: 8px 8px 0px #000000 !important;
+}
+html[data-theme-preset="soft-brutalist"] .btn-primary {
+  background: #000000 !important;
+  color: #ffffff !important;
+  border: 2.5px solid #000000 !important;
+  box-shadow: 4px 4px 0px #ff3d00 !important;
+  font-weight: 800 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.04em !important;
+}
+html[data-theme-preset="soft-brutalist"] .btn-primary:hover {
+  background: #ff3d00 !important;
+  color: #ffffff !important;
+  transform: translate(2px, 2px) !important;
+  box-shadow: 2px 2px 0px #000000 !important;
+}
+html[data-theme-preset="soft-brutalist"] .btn-outline-primary {
+  background: #ffffff !important;
+  color: #000000 !important;
+  border: 2.5px solid #000000 !important;
+  box-shadow: 4px 4px 0px #000000 !important;
+  font-weight: 800 !important;
+  text-transform: uppercase !important;
+}
+html[data-theme-preset="soft-brutalist"] .btn-outline-primary:hover {
+  background: #000000 !important;
+  color: #ffffff !important;
+}
+html[data-theme-preset="soft-brutalist"] .badge {
+  border: 2px solid #000000 !important;
+  font-weight: 800 !important;
+  text-transform: uppercase !important;
+}
+html[data-theme-preset="soft-brutalist"] .badge-primary-soft {
+  background-color: #facc15 !important;
+  color: #000000 !important;
+  border: 2px solid #000000 !important;
+}
+html[data-theme-preset="soft-brutalist"] .navbar {
+  border-bottom: 3px solid #000000 !important;
+  background-color: #ffffff !important;
+}
+
+/* 3. MODERN LUXURY (Premium, Minimal, Elegant, Champagne Gold Accents) */
+html[data-theme-preset="modern-luxury"] {
+  --background: #fdfcf9;
+  --foreground: #0f172a;
+  --muted: #475569;
+  --card-bg: #ffffff;
+  --card-border: #e9e5dc;
+  --bs-primary: #0f172a;
+  --bs-primary-rgb: 15, 23, 42;
+  --bs-secondary: #c59b27;
+  --bs-secondary-rgb: 197, 155, 39;
+}
+html[data-theme-preset="modern-luxury"] body {
+  font-family: 'Plus Jakarta Sans', sans-serif !important;
+  background-color: #fdfcf9 !important;
+  color: #1e293b !important;
+  letter-spacing: 0.01em;
+}
+html[data-theme-preset="modern-luxury"] h1:not([style*="color"]):not(.text-white),
+html[data-theme-preset="modern-luxury"] h2:not([style*="color"]):not(.text-white),
+html[data-theme-preset="modern-luxury"] h3:not([style*="color"]):not(.text-white),
+html[data-theme-preset="modern-luxury"] h4:not([style*="color"]):not(.text-white),
+html[data-theme-preset="modern-luxury"] .navbar-brand:not([style*="color"]) {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-weight: 700;
+  letter-spacing: -0.015em;
+  color: #0f172a;
+}
+html[data-theme-preset="modern-luxury"] .card,
+html[data-theme-preset="modern-luxury"] .card-custom {
+  border-radius: 10px !important;
+  border: 1px solid #e9e5dc !important;
+  box-shadow: 0 4px 20px rgba(197, 155, 39, 0.08) !important;
+}
+html[data-theme-preset="modern-luxury"] .rounded-4 {
+  border-radius: 12px !important;
+}
+html[data-theme-preset="modern-luxury"] .rounded-3 {
+  border-radius: 8px !important;
+}
+html[data-theme-preset="modern-luxury"] .rounded-pill {
+  border-radius: 8px !important;
+}
+html[data-theme-preset="modern-luxury"] .btn-primary {
+  background: #0f172a !important;
+  border: 1px solid #c59b27 !important;
+  color: #ffffff !important;
+  border-radius: 8px !important;
+  letter-spacing: 0.03em !important;
+  font-weight: 600 !important;
+  box-shadow: 0 3px 12px rgba(15, 23, 42, 0.15) !important;
+}
+html[data-theme-preset="modern-luxury"] .btn-primary:hover {
+  background: #c59b27 !important;
+  border-color: #c59b27 !important;
+  color: #ffffff !important;
+  box-shadow: 0 4px 16px rgba(197, 155, 39, 0.3) !important;
+}
+html[data-theme-preset="modern-luxury"] .btn-outline-primary {
+  border: 1.5px solid #0f172a !important;
+  color: #0f172a !important;
+  border-radius: 8px !important;
+}
+html[data-theme-preset="modern-luxury"] .btn-outline-primary:hover {
+  background: #0f172a !important;
+  color: #ffffff !important;
+}
+html[data-theme-preset="modern-luxury"] .badge-primary-soft {
+  background: rgba(197, 155, 39, 0.12) !important;
+  color: #927218 !important;
+  border: 1px solid rgba(197, 155, 39, 0.35) !important;
+  border-radius: 6px !important;
+}
+html[data-theme-preset="modern-luxury"] .navbar {
+  border-bottom: 1px solid rgba(197, 155, 39, 0.25) !important;
+  background-color: #ffffff !important;
+}
+
+/* 4. TROPICAL MODERN (Natural, Green, Warm, Organic, Family) */
+html[data-theme-preset="tropical-modern"] {
+  --background: #f6f8f5;
+  --foreground: #14281d;
+  --muted: #2d4a3e;
+  --card-bg: #ffffff;
+  --card-border: #d8e2dc;
+  --bs-primary: #1b4332;
+  --bs-primary-rgb: 27, 67, 50;
+  --bs-secondary: #bc6c25;
+  --bs-secondary-rgb: 188, 108, 37;
+}
+html[data-theme-preset="tropical-modern"] body {
+  font-family: 'Onest', sans-serif !important;
+  background-color: #f6f8f5 !important;
+  color: #14281d !important;
+}
+html[data-theme-preset="tropical-modern"] h1:not([style*="color"]):not(.text-white),
+html[data-theme-preset="tropical-modern"] h2:not([style*="color"]):not(.text-white),
+html[data-theme-preset="tropical-modern"] h3:not([style*="color"]):not(.text-white),
+html[data-theme-preset="tropical-modern"] h4:not([style*="color"]):not(.text-white),
+html[data-theme-preset="tropical-modern"] .navbar-brand:not([style*="color"]) {
+  font-family: 'Onest', sans-serif;
+  font-weight: 800;
+  color: #1b4332;
+}
+html[data-theme-preset="tropical-modern"] .card,
+html[data-theme-preset="tropical-modern"] .card-custom {
+  border-radius: 22px !important;
+  border: 1.5px solid #d8e2dc !important;
+  box-shadow: 0 8px 24px rgba(27, 67, 50, 0.06) !important;
+}
+html[data-theme-preset="tropical-modern"] .rounded-4 {
+  border-radius: 22px !important;
+}
+html[data-theme-preset="tropical-modern"] .rounded-3 {
+  border-radius: 16px !important;
+}
+html[data-theme-preset="tropical-modern"] .rounded-pill,
+html[data-theme-preset="tropical-modern"] .btn-primary,
+html[data-theme-preset="tropical-modern"] .btn-outline-primary {
+  border-radius: 9999px !important;
+}
+html[data-theme-preset="tropical-modern"] .btn-primary {
+  background: #1b4332 !important;
+  border-color: #1b4332 !important;
+  color: #ffffff !important;
+  box-shadow: 0 4px 14px rgba(27, 67, 50, 0.25) !important;
+}
+html[data-theme-preset="tropical-modern"] .btn-primary:hover {
+  background: #2d6a4f !important;
+  border-color: #2d6a4f !important;
+}
+html[data-theme-preset="tropical-modern"] .badge-primary-soft {
+  background-color: #e9edc9 !important;
+  color: #1b4332 !important;
+  border-radius: 9999px !important;
+}
+
+/* 5. URBAN CONTEMPORARY (Modern City, Geometric, Strong Typography, Cyan Contrast) */
+html[data-theme-preset="urban-contemporary"] {
+  --background: #f8fafc;
+  --foreground: #09090b;
+  --muted: #334155;
+  --card-bg: #ffffff;
+  --card-border: #cbd5e1;
+  --bs-primary: #0284c7;
+  --bs-primary-rgb: 2, 132, 199;
+  --bs-secondary: #0f172a;
+  --bs-secondary-rgb: 15, 23, 42;
+}
+html[data-theme-preset="urban-contemporary"] body {
+  font-family: 'Space Grotesk', sans-serif !important;
+  background-color: #f8fafc !important;
+  color: #09090b !important;
+}
+html[data-theme-preset="urban-contemporary"] h1,
+html[data-theme-preset="urban-contemporary"] h2,
+html[data-theme-preset="urban-contemporary"] h3,
+html[data-theme-preset="urban-contemporary"] h4,
+html[data-theme-preset="urban-contemporary"] .navbar-brand {
+  font-family: 'Space Grotesk', sans-serif !important;
+  font-weight: 800 !important;
+  letter-spacing: -0.02em !important;
+}
+html[data-theme-preset="urban-contemporary"] .card,
+html[data-theme-preset="urban-contemporary"] .card-custom {
+  border-radius: 10px !important;
+  border: 1.5px solid #cbd5e1 !important;
+  box-shadow: 0 4px 16px rgba(2, 132, 199, 0.08) !important;
+}
+html[data-theme-preset="urban-contemporary"] .rounded-4 {
+  border-radius: 12px !important;
+}
+html[data-theme-preset="urban-contemporary"] .rounded-3 {
+  border-radius: 8px !important;
+}
+html[data-theme-preset="urban-contemporary"] .rounded-pill,
+html[data-theme-preset="urban-contemporary"] .btn-primary,
+html[data-theme-preset="urban-contemporary"] .btn-outline-primary {
+  border-radius: 8px !important;
+}
+html[data-theme-preset="urban-contemporary"] .btn-primary {
+  background: #0284c7 !important;
+  border-color: #0284c7 !important;
+  color: #ffffff !important;
+  font-weight: 700 !important;
+  box-shadow: 0 4px 14px rgba(2, 132, 199, 0.25) !important;
+}
+html[data-theme-preset="urban-contemporary"] .btn-primary:hover {
+  background: #0369a1 !important;
+}
+html[data-theme-preset="urban-contemporary"] .badge-primary-soft {
+  background-color: rgba(2, 132, 199, 0.12) !important;
+  color: #0284c7 !important;
+  border-radius: 6px !important;
+}
+
+/* 6. EDITORIAL ARCHITECTURE (Magazine Style, Asymmetric, Section Numbering, Storytelling) */
+html[data-theme-preset="editorial-architecture"] {
+  --background: #ffffff;
+  --foreground: #171717;
+  --muted: #404040;
+  --card-bg: #ffffff;
+  --card-border: #171717;
+  --bs-primary: #171717;
+  --bs-primary-rgb: 23, 23, 23;
+  --bs-secondary: #e11d48;
+  --bs-secondary-rgb: 225, 29, 72;
+}
+html[data-theme-preset="editorial-architecture"] body {
+  font-family: 'Space Grotesk', sans-serif !important;
+  background-color: #ffffff !important;
+  color: #171717 !important;
+}
+html[data-theme-preset="editorial-architecture"] h1,
+html[data-theme-preset="editorial-architecture"] h2,
+html[data-theme-preset="editorial-architecture"] h3,
+html[data-theme-preset="editorial-architecture"] h4,
+html[data-theme-preset="editorial-architecture"] .navbar-brand {
+  font-family: 'Space Grotesk', sans-serif !important;
+  font-weight: 800 !important;
+  letter-spacing: -0.02em !important;
+  text-transform: uppercase !important;
+}
+html[data-theme-preset="editorial-architecture"] .rounded-pill,
+html[data-theme-preset="editorial-architecture"] .rounded-4,
+html[data-theme-preset="editorial-architecture"] .rounded-3,
+html[data-theme-preset="editorial-architecture"] .rounded-2,
+html[data-theme-preset="editorial-architecture"] .btn,
+html[data-theme-preset="editorial-architecture"] .card,
+html[data-theme-preset="editorial-architecture"] .card-custom,
+html[data-theme-preset="editorial-architecture"] .badge,
+html[data-theme-preset="editorial-architecture"] .form-control,
+html[data-theme-preset="editorial-architecture"] .form-select,
+html[data-theme-preset="editorial-architecture"] .modal-content {
+  border-radius: 0px !important;
+}
+html[data-theme-preset="editorial-architecture"] .card,
+html[data-theme-preset="editorial-architecture"] .card-custom {
+  border: 1.5px solid #171717 !important;
+  box-shadow: none !important;
+}
+html[data-theme-preset="editorial-architecture"] .btn-primary {
+  background: #171717 !important;
+  color: #ffffff !important;
+  border: 1.5px solid #171717 !important;
+  font-weight: 700 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.05em !important;
+}
+html[data-theme-preset="editorial-architecture"] .btn-primary:hover {
+  background: #e11d48 !important;
+  border-color: #e11d48 !important;
+}
+html[data-theme-preset="editorial-architecture"] .btn-outline-primary {
+  border: 1.5px solid #171717 !important;
+  color: #171717 !important;
+  font-weight: 700 !important;
+  text-transform: uppercase !important;
+}
+html[data-theme-preset="editorial-architecture"] .btn-outline-primary:hover {
+  background: #171717 !important;
+  color: #ffffff !important;
+}
+html[data-theme-preset="editorial-architecture"] .badge-primary-soft {
+  background-color: #171717 !important;
+  color: #ffffff !important;
+  text-transform: uppercase !important;
+}
+html[data-theme-preset="editorial-architecture"] .navbar {
+  border-bottom: 2px solid #171717 !important;
+  background-color: #ffffff !important;
+}
+
+
+

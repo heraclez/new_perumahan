@@ -1,0 +1,419 @@
+DEBUG - 2026-09-18 04:28:47 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-09-18 04:29:46 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-09-18 04:29:46 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-09-18 04:29:50 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-09-18 04:29:52 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-09-18 04:29:57 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-09-18 04:30:43 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-09-18 04:31:01 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-09-18 04:31:58 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-09-18 04:32:00 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2026-09-18 04:32:12 --> [DEPRECATED] Function curl_close() is deprecated since 8.5, as it has no effect since PHP 8.0 in APPPATH\Controllers\Chat.php on line 422.
+ 1 APPPATH\Controllers\Chat.php(96): App\Controllers\Chat->callN8nWebhook('https://ercy.app.n8n.cloud/webhook/a3da6735-771c-435f-b4c8-c9ae179329f0/chat', 'hai', 'Rio E.K', [], [...])
+ 2 SYSTEMPATH\CodeIgniter.php(974): App\Controllers\Chat->send()
+ 3 SYSTEMPATH\CodeIgniter.php(520): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Chat))
+ 4 SYSTEMPATH\CodeIgniter.php(363): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 8 SYSTEMPATH\rewrite.php(44): require_once('C:\\php\\perumahan\\public\\index.php')
+ERROR - 2026-09-18 04:32:12 --> n8n Webhook Error: HTTP 404 - {"code":404,"message":"The requested webhook \"POST a3da6735-771c-435f-b4c8-c9ae179329f0/chat\" is not registered.","hint":"The workflow must be active for a production URL to run successfully. You can activate the workflow using the toggle in the top-right of the editor. Note that unlike test URL calls, production URL calls aren't shown on the canvas (only in the executions list)"}
+WARNING - 2026-09-18 04:32:12 --> n8n chat failed: HTTP 404: {"code":404,"message":"The requested webhook \"POST a3da6735-771c-435f-b4c8-c9ae179329f0/chat\" is not registered.","hint":"The workflow must be active for a production URL to run successfully. You can activate the workflow using the toggle in the top-right of the editor. Note that unlike test URL calls, production URL calls aren't shown on the canvas (only in the executions list)"}, falling back.
+WARNING - 2026-09-18 04:32:12 --> [DEPRECATED] Function curl_close() is deprecated since 8.5, as it has no effect since PHP 8.0 in APPPATH\Controllers\Chat.php on line 340.
+ 1 APPPATH\Controllers\Chat.php(142): App\Controllers\Chat->callGeminiApi('AQ.Ab8RN6IfH3TFHl1OilZpJ4_PmqbF8ySTfhuugCzLepJhJA1NpA', 'gemini-1.5-flash', 'Anda adalah Sarah - Konsultan Properti, seorang Senior Property Consultant & Advisor resmi dari Grand Harmoni Residence ("Hunian Mewah, Asri, dan Strategis untuk Keluarga Idaman").
+
+NAMA PENGUNJUNG / CALON PEMBELI: Rio E.K
+- Sapalah pengunjung secara personal menggunakan \'Kak Rio E.K\' atau \'Bapak/Ibu Rio E.K\'.
+
+INFORMASI KANTOR & PROYEK PERUMAHAN:
+- Lokasi Kantor / Marketing Gallery / Kawasan Proyek: Jl. Boulevard Raya No. 88, Grand City, Jakarta Barat
+- Telepon Hotline: 021-5558989 | WhatsApp Konsultasi: 6281234567890
+- Jam Operasional Show Unit: Buka SETIAP HARI (Senin - Minggu) pukul 09.00 - 17.00 WIB.
+
+KATALOG TIPE UNIT TERSEDIA SAAT INI (REAL-TIME DATABASE):
+- **Type 45/90 - Cluster Jasmine** (Tersedia) [SEDANG PROMO: Promo Spesial Launching Cluster - Free BPHTB & Biaya Notaris, Subsidi Angsuran KPR s/d Rp 25 Juta, dan Bonus Smart Door Lock] | Harga: Rp 650.000.000 | LT: 90m², LB: 45m² | Spek: 2 KT, 1 KM, 1 Carport | Link: properti/type-45-90-cluster-jasmine
+- **Type 72/120 - Cluster Lavender** (Tersedia) | Harga: Rp 1.250.000.000 | LT: 120m², LB: 72m² | Spek: 3 KT, 2 KM, 2 Carport | Link: properti/type-72-120-cluster-lavender
+- **Type 120/180 - Premium Villa** (Booking) | Harga: Rp 2.100.000.000 | LT: 180m², LB: 120m² | Spek: 4 KT, 3 KM, 2 Carport | Link: properti/type-120-180-premium-villa
+
+
+PROGRAM PROMO BULAN INI:
+- Promo Grand Launching Cluster Lavender!: Dapatkan Free DP 0%, Subsidi KPR up to 50 Juta, Free Biaya BPHTB & Notaris, serta Smart Home System untuk 10 Pembeli Pertama bulan ini!
+- Pilihan Skema: DP 0%, Free Semua Biaya (Free BPHTB, Free AJB, Free Biaya Notaris/PPAT, Free Biaya KPR s/d puluhan juta rupiah).
+
+PENGETAHUAN LENGKAP DUNIA PROPERTI & KPR YANG HARUS ANDA KUASAI:
+1. SIMULASI KPR & FINANSIAL:
+   - Suku Bunga: Bunga promo fix mulai 5.5% - 6.5% per tahun (kerjasama bank BUMN seperti BTN, Mandiri, BRI, BNI dan bank swasta terkemuka BCA, CIMB Niaga, OCBC, Permata).
+   - Tenor KPR: Fleksibel dari 5 tahun hingga 25 - 30 tahun.
+   - Perhitungan Angsuran: Jika calon pembeli menanyakan cicilan, berikan estimasi cicilan per bulan yang realistis (misal untuk rumah 500-600 juta cicilan mulai ~3-4 jutaan/bulan tenor 20-25 tahun).
+   - Analisa Kemampuan Gaji (Debt Service Ratio / DSR): Idealnya cicilan maksimal 30% - 40% dari total pendapatan bulanan (bisa single income atau joint income suami-istri). Berikan tips penyesuaian tenor jika gaji terbatas.
+   - Syarat & Berkas KPR:
+     * Karyawan: KTP, KK, NPWP, Slip Gaji 3 bulan terakhir, Surat Keterangan Kerja, Rekening Koran 3-6 bulan.
+     * Wiraswasta/Pengusaha: Rekening koran operasional 6 bulan, laporan keuangan sederhana, NIB/SIUP/SKU, NPWP usaha.
+     * Profesional: Izin praktek, rekening koran, bukti pendapatan.
+   - Tips Lolos BI Checking / SLIK OJK: Pastikan skor kredit Kol 1 (lancar), lunasi atau tutup tagihan paylater/pinjol/kartu kredit sebelum proses BI Checking agar skor kredit bersih.
+
+2. BIAYA-BIAYA TRANSAKSI PROPERTI:
+   - Jelaskan dengan gamblang apa saja biaya beli rumah: BPHTB (5% x [Harga - NPOPTKP]), Biaya Akta Notaris/PPAT, AJB (Akta Jual Beli), BBN (Bea Balik Nama), Biaya Provisi & Administrasi KPR, Asuransi Jiwa & Kebakaran.
+   - Tegaskan bahwa pada promo kami saat ini, mayoritas biaya legalitas (BPHTB, Notaris, AJB, BBN) sudah GRATIS / DISUBSIDI oleh developer.
+
+3. LEGALITAS & KEAMANAN INVESTASI:
+   - Sertifikat sudah SHM (Sertifikat Hak Milik) murni, IMB / PBG sudah terbit, AMDAL & siteplan resmi disahkan Pemda.
+   - Keamanan transaksi 100% legal dan transparan di hadapan Notaris / PPAT rekanan resmi.
+
+4. KUALITAS SPESIFIKASI & KONSTRUKSI TEKNIS:
+   - Pondasi: Batu kali & cakar ayam bertulang kokoh.
+   - Dinding: Bata merah / bata hebel berkualitas, diplester, diaci & dicat ramah cuaca.
+   - Lantai: Granit tile 60x60 cm mewah & adem.
+   - Atap: Rangka baja ringan anti-karat, genteng flat beton / keramik kedap panas.
+   - Sanitair: Kloset duduk Toto / American Standard & shower set.
+   - Sirkulasi & Tata Ruang: Plafon tinggi (high ceiling 3.5 - 4 meter) untuk pencahayaan alami optimal & sirkulasi udara sejuk (cross ventilation).
+   - Utilitas: Listrik PLN 1300 / 2200 VA, air bersih PDAM / sumur bor jernih, septic tank bio-tech anti-bau.
+
+5. FASILITAS KAWASAN & LINGKUNGAN:
+   - Keamanan 24 Jam dengan One Gate System, RFID Barrier Gate, security guard & CCTV aktif.
+   - Lingkungan Asri: Taman bermain anak (playground), jogging track, musholla/masjid kawasan, row jalan lebar (6 - 10 meter) paving block/aspal mulus.
+   - Bebas Banjir: Sistem drainase tertutup dengan elevasi tanah perumahan yang tinggi dan saluran resapan terpadu.
+
+6. ALUR / PROSES PEMBELIAN RUMAH:
+   1. Kunjungan / Survey Lokasi & Show Unit bersama konsultan kami (daftar janji temu kapan saja).
+   2. Booking Fee / NUP (Nomor Urut Pemesanan) untuk mengunci kavling & promo.
+   3. Penyerahan Berkas KPR (dibantu penuh oleh tim pemberkasan in-house kami hingga SP3K terbit).
+   4. Akad Kredit KPR di Bank / Penandatanganan Notaris.
+   5. Serah Terima Kunci (STK) & Sertifikat Garansi Bangunan (masa retensi).
+
+7. SKEMA LAIN: Cash Keras (Diskon potongan harga khusus), Cash Bertahap ke Developer (Installment tanpa bank).
+
+PEDOMAN GAYA KOMUNIKASI (NATURAL SEPERTI MANUSIA):
+Anda adalah asisten virtual resmi perumahan yang ramah, komunikatif, profesional, dan berwawasan mendalam seputar properti, cicilan KPR, dan legalitas rumah. Jawablah pertanyaan user secara jelas, ringkas, dan persuasif.
+1. Persona: Ramah, santun, hangat, empatik, dan solutif layaknya Senior Property Consultant manusia yang siap mendampingi calon pembeli dari awal hingga punya rumah.
+2. Gaya Bahasa: Bahasa Indonesia yang luwes, profesional, mengalir alami, dan tidak kaku/robotik. Hindari jawaban yang terdengar seperti membaca template mesin.
+3. Pendengar Aktif & Solutif: Jika pengunjung menceritakan kendala (misal budget mepet, bingung syarat KPR, baru pertama kali beli rumah), beri rasa aman, validasi kebutuhan mereka, dan tawarkan solusi konkret.
+4. Format Jawaban:
+   - Gunakan paragraf ringkas, poin-poin tebal (bullet points), dan angka tebal agar sangat nyaman dibaca di layar HP.
+   - Jawaban padat berisi, informatif, dan tidak terlalu panjang (2-4 paragraf terstruktur).
+5. Luwes Menjawab Segala Hal Terkait Perumahan:
+   - Jawablah pertanyaan apa pun yang diajukan pengunjung seputar dunia properti, KPR, konstruksi, legalitas, investasi, maupun tips renovasi secara akurat.
+6. Call-to-Action (CTA): Selalu akhiri secara ramah dengan mengajak pengunjung mengatur jadwal survey lokasi / show unit atau lanjut konsultasi lebih personal ke WhatsApp marketing.', 'hai', [])
+ 2 SYSTEMPATH\CodeIgniter.php(974): App\Controllers\Chat->send()
+ 3 SYSTEMPATH\CodeIgniter.php(520): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Chat))
+ 4 SYSTEMPATH\CodeIgniter.php(363): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 8 SYSTEMPATH\rewrite.php(44): require_once('C:\\php\\perumahan\\public\\index.php')
+ERROR - 2026-09-18 04:32:12 --> Gemini API Error: HTTP 404 - {
+  "error": {
+    "code": 404,
+    "message": "models/gemini-1.5-flash is not found for API version v1beta, or is not supported for generateContent. Call ModelService.ListModels to see the list of available models and their supported methods.",
+    "status": "NOT_FOUND"
+  }
+}
+
+DEBUG - 2026-09-18 04:32:12 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2026-09-18 04:32:25 --> [DEPRECATED] Function curl_close() is deprecated since 8.5, as it has no effect since PHP 8.0 in APPPATH\Controllers\Chat.php on line 422.
+ 1 APPPATH\Controllers\Chat.php(96): App\Controllers\Chat->callN8nWebhook('https://ercy.app.n8n.cloud/webhook/a3da6735-771c-435f-b4c8-c9ae179329f0/chat', 'kamu ada apa saja', 'Rio E.K', [...], [...])
+ 2 SYSTEMPATH\CodeIgniter.php(974): App\Controllers\Chat->send()
+ 3 SYSTEMPATH\CodeIgniter.php(520): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Chat))
+ 4 SYSTEMPATH\CodeIgniter.php(363): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 8 SYSTEMPATH\rewrite.php(44): require_once('C:\\php\\perumahan\\public\\index.php')
+ERROR - 2026-09-18 04:32:25 --> n8n Webhook Error: HTTP 404 - {"code":404,"message":"The requested webhook \"POST a3da6735-771c-435f-b4c8-c9ae179329f0/chat\" is not registered.","hint":"The workflow must be active for a production URL to run successfully. You can activate the workflow using the toggle in the top-right of the editor. Note that unlike test URL calls, production URL calls aren't shown on the canvas (only in the executions list)"}
+WARNING - 2026-09-18 04:32:25 --> n8n chat failed: HTTP 404: {"code":404,"message":"The requested webhook \"POST a3da6735-771c-435f-b4c8-c9ae179329f0/chat\" is not registered.","hint":"The workflow must be active for a production URL to run successfully. You can activate the workflow using the toggle in the top-right of the editor. Note that unlike test URL calls, production URL calls aren't shown on the canvas (only in the executions list)"}, falling back.
+WARNING - 2026-09-18 04:32:25 --> [DEPRECATED] Function curl_close() is deprecated since 8.5, as it has no effect since PHP 8.0 in APPPATH\Controllers\Chat.php on line 340.
+ 1 APPPATH\Controllers\Chat.php(142): App\Controllers\Chat->callGeminiApi('AQ.Ab8RN6IfH3TFHl1OilZpJ4_PmqbF8ySTfhuugCzLepJhJA1NpA', 'gemini-1.5-flash', 'Anda adalah Sarah - Konsultan Properti, seorang Senior Property Consultant & Advisor resmi dari Grand Harmoni Residence ("Hunian Mewah, Asri, dan Strategis untuk Keluarga Idaman").
+
+NAMA PENGUNJUNG / CALON PEMBELI: Rio E.K
+- Sapalah pengunjung secara personal menggunakan \'Kak Rio E.K\' atau \'Bapak/Ibu Rio E.K\'.
+
+INFORMASI KANTOR & PROYEK PERUMAHAN:
+- Lokasi Kantor / Marketing Gallery / Kawasan Proyek: Jl. Boulevard Raya No. 88, Grand City, Jakarta Barat
+- Telepon Hotline: 021-5558989 | WhatsApp Konsultasi: 6281234567890
+- Jam Operasional Show Unit: Buka SETIAP HARI (Senin - Minggu) pukul 09.00 - 17.00 WIB.
+
+KATALOG TIPE UNIT TERSEDIA SAAT INI (REAL-TIME DATABASE):
+- **Type 45/90 - Cluster Jasmine** (Tersedia) [SEDANG PROMO: Promo Spesial Launching Cluster - Free BPHTB & Biaya Notaris, Subsidi Angsuran KPR s/d Rp 25 Juta, dan Bonus Smart Door Lock] | Harga: Rp 650.000.000 | LT: 90m², LB: 45m² | Spek: 2 KT, 1 KM, 1 Carport | Link: properti/type-45-90-cluster-jasmine
+- **Type 72/120 - Cluster Lavender** (Tersedia) | Harga: Rp 1.250.000.000 | LT: 120m², LB: 72m² | Spek: 3 KT, 2 KM, 2 Carport | Link: properti/type-72-120-cluster-lavender
+- **Type 120/180 - Premium Villa** (Booking) | Harga: Rp 2.100.000.000 | LT: 180m², LB: 120m² | Spek: 4 KT, 3 KM, 2 Carport | Link: properti/type-120-180-premium-villa
+
+
+PROGRAM PROMO BULAN INI:
+- Promo Grand Launching Cluster Lavender!: Dapatkan Free DP 0%, Subsidi KPR up to 50 Juta, Free Biaya BPHTB & Notaris, serta Smart Home System untuk 10 Pembeli Pertama bulan ini!
+- Pilihan Skema: DP 0%, Free Semua Biaya (Free BPHTB, Free AJB, Free Biaya Notaris/PPAT, Free Biaya KPR s/d puluhan juta rupiah).
+
+PENGETAHUAN LENGKAP DUNIA PROPERTI & KPR YANG HARUS ANDA KUASAI:
+1. SIMULASI KPR & FINANSIAL:
+   - Suku Bunga: Bunga promo fix mulai 5.5% - 6.5% per tahun (kerjasama bank BUMN seperti BTN, Mandiri, BRI, BNI dan bank swasta terkemuka BCA, CIMB Niaga, OCBC, Permata).
+   - Tenor KPR: Fleksibel dari 5 tahun hingga 25 - 30 tahun.
+   - Perhitungan Angsuran: Jika calon pembeli menanyakan cicilan, berikan estimasi cicilan per bulan yang realistis (misal untuk rumah 500-600 juta cicilan mulai ~3-4 jutaan/bulan tenor 20-25 tahun).
+   - Analisa Kemampuan Gaji (Debt Service Ratio / DSR): Idealnya cicilan maksimal 30% - 40% dari total pendapatan bulanan (bisa single income atau joint income suami-istri). Berikan tips penyesuaian tenor jika gaji terbatas.
+   - Syarat & Berkas KPR:
+     * Karyawan: KTP, KK, NPWP, Slip Gaji 3 bulan terakhir, Surat Keterangan Kerja, Rekening Koran 3-6 bulan.
+     * Wiraswasta/Pengusaha: Rekening koran operasional 6 bulan, laporan keuangan sederhana, NIB/SIUP/SKU, NPWP usaha.
+     * Profesional: Izin praktek, rekening koran, bukti pendapatan.
+   - Tips Lolos BI Checking / SLIK OJK: Pastikan skor kredit Kol 1 (lancar), lunasi atau tutup tagihan paylater/pinjol/kartu kredit sebelum proses BI Checking agar skor kredit bersih.
+
+2. BIAYA-BIAYA TRANSAKSI PROPERTI:
+   - Jelaskan dengan gamblang apa saja biaya beli rumah: BPHTB (5% x [Harga - NPOPTKP]), Biaya Akta Notaris/PPAT, AJB (Akta Jual Beli), BBN (Bea Balik Nama), Biaya Provisi & Administrasi KPR, Asuransi Jiwa & Kebakaran.
+   - Tegaskan bahwa pada promo kami saat ini, mayoritas biaya legalitas (BPHTB, Notaris, AJB, BBN) sudah GRATIS / DISUBSIDI oleh developer.
+
+3. LEGALITAS & KEAMANAN INVESTASI:
+   - Sertifikat sudah SHM (Sertifikat Hak Milik) murni, IMB / PBG sudah terbit, AMDAL & siteplan resmi disahkan Pemda.
+   - Keamanan transaksi 100% legal dan transparan di hadapan Notaris / PPAT rekanan resmi.
+
+4. KUALITAS SPESIFIKASI & KONSTRUKSI TEKNIS:
+   - Pondasi: Batu kali & cakar ayam bertulang kokoh.
+   - Dinding: Bata merah / bata hebel berkualitas, diplester, diaci & dicat ramah cuaca.
+   - Lantai: Granit tile 60x60 cm mewah & adem.
+   - Atap: Rangka baja ringan anti-karat, genteng flat beton / keramik kedap panas.
+   - Sanitair: Kloset duduk Toto / American Standard & shower set.
+   - Sirkulasi & Tata Ruang: Plafon tinggi (high ceiling 3.5 - 4 meter) untuk pencahayaan alami optimal & sirkulasi udara sejuk (cross ventilation).
+   - Utilitas: Listrik PLN 1300 / 2200 VA, air bersih PDAM / sumur bor jernih, septic tank bio-tech anti-bau.
+
+5. FASILITAS KAWASAN & LINGKUNGAN:
+   - Keamanan 24 Jam dengan One Gate System, RFID Barrier Gate, security guard & CCTV aktif.
+   - Lingkungan Asri: Taman bermain anak (playground), jogging track, musholla/masjid kawasan, row jalan lebar (6 - 10 meter) paving block/aspal mulus.
+   - Bebas Banjir: Sistem drainase tertutup dengan elevasi tanah perumahan yang tinggi dan saluran resapan terpadu.
+
+6. ALUR / PROSES PEMBELIAN RUMAH:
+   1. Kunjungan / Survey Lokasi & Show Unit bersama konsultan kami (daftar janji temu kapan saja).
+   2. Booking Fee / NUP (Nomor Urut Pemesanan) untuk mengunci kavling & promo.
+   3. Penyerahan Berkas KPR (dibantu penuh oleh tim pemberkasan in-house kami hingga SP3K terbit).
+   4. Akad Kredit KPR di Bank / Penandatanganan Notaris.
+   5. Serah Terima Kunci (STK) & Sertifikat Garansi Bangunan (masa retensi).
+
+7. SKEMA LAIN: Cash Keras (Diskon potongan harga khusus), Cash Bertahap ke Developer (Installment tanpa bank).
+
+PEDOMAN GAYA KOMUNIKASI (NATURAL SEPERTI MANUSIA):
+Anda adalah asisten virtual resmi perumahan yang ramah, komunikatif, profesional, dan berwawasan mendalam seputar properti, cicilan KPR, dan legalitas rumah. Jawablah pertanyaan user secara jelas, ringkas, dan persuasif.
+1. Persona: Ramah, santun, hangat, empatik, dan solutif layaknya Senior Property Consultant manusia yang siap mendampingi calon pembeli dari awal hingga punya rumah.
+2. Gaya Bahasa: Bahasa Indonesia yang luwes, profesional, mengalir alami, dan tidak kaku/robotik. Hindari jawaban yang terdengar seperti membaca template mesin.
+3. Pendengar Aktif & Solutif: Jika pengunjung menceritakan kendala (misal budget mepet, bingung syarat KPR, baru pertama kali beli rumah), beri rasa aman, validasi kebutuhan mereka, dan tawarkan solusi konkret.
+4. Format Jawaban:
+   - Gunakan paragraf ringkas, poin-poin tebal (bullet points), dan angka tebal agar sangat nyaman dibaca di layar HP.
+   - Jawaban padat berisi, informatif, dan tidak terlalu panjang (2-4 paragraf terstruktur).
+5. Luwes Menjawab Segala Hal Terkait Perumahan:
+   - Jawablah pertanyaan apa pun yang diajukan pengunjung seputar dunia properti, KPR, konstruksi, legalitas, investasi, maupun tips renovasi secara akurat.
+6. Call-to-Action (CTA): Selalu akhiri secara ramah dengan mengajak pengunjung mengatur jadwal survey lokasi / show unit atau lanjut konsultasi lebih personal ke WhatsApp marketing.', 'kamu ada apa saja', [...])
+ 2 SYSTEMPATH\CodeIgniter.php(974): App\Controllers\Chat->send()
+ 3 SYSTEMPATH\CodeIgniter.php(520): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Chat))
+ 4 SYSTEMPATH\CodeIgniter.php(363): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 8 SYSTEMPATH\rewrite.php(44): require_once('C:\\php\\perumahan\\public\\index.php')
+ERROR - 2026-09-18 04:32:25 --> Gemini API Error: HTTP 404 - {
+  "error": {
+    "code": 404,
+    "message": "models/gemini-1.5-flash is not found for API version v1beta, or is not supported for generateContent. Call ModelService.ListModels to see the list of available models and their supported methods.",
+    "status": "NOT_FOUND"
+  }
+}
+
+DEBUG - 2026-09-18 04:32:25 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-09-18 04:38:33 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-09-18 04:43:33 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-09-18 04:43:54 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-09-18 04:43:55 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-09-18 04:43:59 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2026-09-18 04:44:05 --> [DEPRECATED] Function curl_close() is deprecated since 8.5, as it has no effect since PHP 8.0 in APPPATH\Controllers\Chat.php on line 183.
+ 1 APPPATH\Controllers\Chat.php(87): App\Controllers\Chat->callN8nWebhook('https://ercy.app.n8n.cloud/webhook-test/chat', 'Tipe & Harga Rumah', 'budi', [], [...])
+ 2 SYSTEMPATH\CodeIgniter.php(974): App\Controllers\Chat->send()
+ 3 SYSTEMPATH\CodeIgniter.php(520): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Chat))
+ 4 SYSTEMPATH\CodeIgniter.php(363): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 8 SYSTEMPATH\rewrite.php(44): require_once('C:\\php\\perumahan\\public\\index.php')
+ERROR - 2026-09-18 04:44:05 --> n8n Webhook Error: HTTP 404 - {"code":404,"message":"The requested webhook \"chat\" is not registered.","hint":"Click the 'Execute workflow' button on the canvas, then try again. (In test mode, the webhook only works for one call after you click this button)"}
+WARNING - 2026-09-18 04:44:05 --> n8n chat webhook failed: HTTP 404: {"code":404,"message":"The requested webhook \"chat\" is not registered.","hint":"Click the 'Execute workflow' button on the canvas, then try again. (In test mode, the webhook only works for one call after you click this button)"}
+DEBUG - 2026-09-18 04:44:05 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2026-09-18 05:16:36 --> [DEPRECATED] Function curl_close() is deprecated since 8.5, as it has no effect since PHP 8.0 in APPPATH\Controllers\Chat.php on line 183.
+ 1 APPPATH\Controllers\Chat.php(87): App\Controllers\Chat->callN8nWebhook('https://ercy.app.n8n.cloud/webhook-test/chat', 'apa saja isinya', 'budi', [...], [...])
+ 2 SYSTEMPATH\CodeIgniter.php(974): App\Controllers\Chat->send()
+ 3 SYSTEMPATH\CodeIgniter.php(520): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Chat))
+ 4 SYSTEMPATH\CodeIgniter.php(363): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 8 SYSTEMPATH\rewrite.php(44): require_once('C:\\php\\perumahan\\public\\index.php')
+ERROR - 2026-09-18 05:16:36 --> n8n Webhook Error: HTTP 404 - {"code":404,"message":"The requested webhook \"chat\" is not registered.","hint":"Click the 'Execute workflow' button on the canvas, then try again. (In test mode, the webhook only works for one call after you click this button)"}
+WARNING - 2026-09-18 05:16:36 --> n8n chat webhook failed: HTTP 404: {"code":404,"message":"The requested webhook \"chat\" is not registered.","hint":"Click the 'Execute workflow' button on the canvas, then try again. (In test mode, the webhook only works for one call after you click this button)"}
+DEBUG - 2026-09-18 05:16:36 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2026-09-18 05:18:05 --> [DEPRECATED] Function curl_close() is deprecated since 8.5, as it has no effect since PHP 8.0 in APPPATH\Controllers\Chat.php on line 183.
+ 1 APPPATH\Controllers\Chat.php(87): App\Controllers\Chat->callN8nWebhook('https://ercy.app.n8n.cloud/webhook-test/chat', 'test', 'budi', [...], [...])
+ 2 SYSTEMPATH\CodeIgniter.php(974): App\Controllers\Chat->send()
+ 3 SYSTEMPATH\CodeIgniter.php(520): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Chat))
+ 4 SYSTEMPATH\CodeIgniter.php(363): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 8 SYSTEMPATH\rewrite.php(44): require_once('C:\\php\\perumahan\\public\\index.php')
+WARNING - 2026-09-18 05:18:05 --> n8n chat webhook failed: Format respons dari n8n tidak berisi teks yang dikenali.
+DEBUG - 2026-09-18 05:18:05 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2026-09-18 05:18:14 --> [DEPRECATED] Function curl_close() is deprecated since 8.5, as it has no effect since PHP 8.0 in APPPATH\Controllers\Chat.php on line 183.
+ 1 APPPATH\Controllers\Chat.php(87): App\Controllers\Chat->callN8nWebhook('https://ercy.app.n8n.cloud/webhook-test/chat', 'rumahnya apa saja', 'budi', [...], [...])
+ 2 SYSTEMPATH\CodeIgniter.php(974): App\Controllers\Chat->send()
+ 3 SYSTEMPATH\CodeIgniter.php(520): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Chat))
+ 4 SYSTEMPATH\CodeIgniter.php(363): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 8 SYSTEMPATH\rewrite.php(44): require_once('C:\\php\\perumahan\\public\\index.php')
+ERROR - 2026-09-18 05:18:14 --> n8n Webhook Error: HTTP 404 - {"code":404,"message":"The requested webhook \"chat\" is not registered.","hint":"Click the 'Execute workflow' button on the canvas, then try again. (In test mode, the webhook only works for one call after you click this button)"}
+WARNING - 2026-09-18 05:18:14 --> n8n chat webhook failed: HTTP 404: {"code":404,"message":"The requested webhook \"chat\" is not registered.","hint":"Click the 'Execute workflow' button on the canvas, then try again. (In test mode, the webhook only works for one call after you click this button)"}
+DEBUG - 2026-09-18 05:18:14 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2026-09-18 05:18:21 --> [DEPRECATED] Function curl_close() is deprecated since 8.5, as it has no effect since PHP 8.0 in APPPATH\Controllers\Chat.php on line 183.
+ 1 APPPATH\Controllers\Chat.php(87): App\Controllers\Chat->callN8nWebhook('https://ercy.app.n8n.cloud/webhook-test/chat', 'dimana lokasinya', 'budi', [...], [...])
+ 2 SYSTEMPATH\CodeIgniter.php(974): App\Controllers\Chat->send()
+ 3 SYSTEMPATH\CodeIgniter.php(520): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Chat))
+ 4 SYSTEMPATH\CodeIgniter.php(363): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 8 SYSTEMPATH\rewrite.php(44): require_once('C:\\php\\perumahan\\public\\index.php')
+ERROR - 2026-09-18 05:18:21 --> n8n Webhook Error: HTTP 404 - {"code":404,"message":"The requested webhook \"chat\" is not registered.","hint":"Click the 'Execute workflow' button on the canvas, then try again. (In test mode, the webhook only works for one call after you click this button)"}
+WARNING - 2026-09-18 05:18:21 --> n8n chat webhook failed: HTTP 404: {"code":404,"message":"The requested webhook \"chat\" is not registered.","hint":"Click the 'Execute workflow' button on the canvas, then try again. (In test mode, the webhook only works for one call after you click this button)"}
+DEBUG - 2026-09-18 05:18:21 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2026-09-18 05:18:48 --> [DEPRECATED] Function curl_close() is deprecated since 8.5, as it has no effect since PHP 8.0 in APPPATH\Controllers\Chat.php on line 183.
+ 1 APPPATH\Controllers\Chat.php(87): App\Controllers\Chat->callN8nWebhook('https://ercy.app.n8n.cloud/webhook-test/chat', 'test', 'budi', [...], [...])
+ 2 SYSTEMPATH\CodeIgniter.php(974): App\Controllers\Chat->send()
+ 3 SYSTEMPATH\CodeIgniter.php(520): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Chat))
+ 4 SYSTEMPATH\CodeIgniter.php(363): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 8 SYSTEMPATH\rewrite.php(44): require_once('C:\\php\\perumahan\\public\\index.php')
+ERROR - 2026-09-18 05:18:48 --> n8n Webhook Error: HTTP 404 - {"code":404,"message":"The requested webhook \"chat\" is not registered.","hint":"Click the 'Execute workflow' button on the canvas, then try again. (In test mode, the webhook only works for one call after you click this button)"}
+WARNING - 2026-09-18 05:18:48 --> n8n chat webhook failed: HTTP 404: {"code":404,"message":"The requested webhook \"chat\" is not registered.","hint":"Click the 'Execute workflow' button on the canvas, then try again. (In test mode, the webhook only works for one call after you click this button)"}
+DEBUG - 2026-09-18 05:18:48 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2026-09-18 05:20:12 --> [DEPRECATED] Function curl_close() is deprecated since 8.5, as it has no effect since PHP 8.0 in APPPATH\Controllers\Chat.php on line 183.
+ 1 APPPATH\Controllers\Chat.php(87): App\Controllers\Chat->callN8nWebhook('https://ercy.app.n8n.cloud/webhook-test/chat', 'lokasinya dimana', 'budi', [...], [...])
+ 2 SYSTEMPATH\CodeIgniter.php(974): App\Controllers\Chat->send()
+ 3 SYSTEMPATH\CodeIgniter.php(520): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Chat))
+ 4 SYSTEMPATH\CodeIgniter.php(363): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 8 SYSTEMPATH\rewrite.php(44): require_once('C:\\php\\perumahan\\public\\index.php')
+ERROR - 2026-09-18 05:20:12 --> n8n Webhook Error: HTTP 500 - {"message":"Error in workflow"}
+WARNING - 2026-09-18 05:20:12 --> n8n chat webhook failed: HTTP 500: {"message":"Error in workflow"}
+DEBUG - 2026-09-18 05:20:13 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2026-09-18 05:20:26 --> [DEPRECATED] Function curl_close() is deprecated since 8.5, as it has no effect since PHP 8.0 in APPPATH\Controllers\Chat.php on line 183.
+ 1 APPPATH\Controllers\Chat.php(87): App\Controllers\Chat->callN8nWebhook('https://ercy.app.n8n.cloud/webhook-test/chat', 'lokasinya dimana', 'budi', [...], [...])
+ 2 SYSTEMPATH\CodeIgniter.php(974): App\Controllers\Chat->send()
+ 3 SYSTEMPATH\CodeIgniter.php(520): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Chat))
+ 4 SYSTEMPATH\CodeIgniter.php(363): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 8 SYSTEMPATH\rewrite.php(44): require_once('C:\\php\\perumahan\\public\\index.php')
+ERROR - 2026-09-18 05:20:26 --> n8n Webhook Error: HTTP 500 - {"message":"Error in workflow"}
+WARNING - 2026-09-18 05:20:26 --> n8n chat webhook failed: HTTP 500: {"message":"Error in workflow"}
+DEBUG - 2026-09-18 05:20:26 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-09-18 06:21:31 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2026-09-18 06:22:06 --> [DEPRECATED] Function curl_close() is deprecated since 8.5, as it has no effect since PHP 8.0 in APPPATH\Controllers\Chat.php on line 183.
+ 1 APPPATH\Controllers\Chat.php(87): App\Controllers\Chat->callN8nWebhook('https://ercy.app.n8n.cloud/webhook-test/chat', 'ada tipe apa saja', 'budi', [], [...])
+ 2 SYSTEMPATH\CodeIgniter.php(974): App\Controllers\Chat->send()
+ 3 SYSTEMPATH\CodeIgniter.php(520): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Chat))
+ 4 SYSTEMPATH\CodeIgniter.php(363): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 8 SYSTEMPATH\rewrite.php(44): require_once('C:\\php\\perumahan\\public\\index.php')
+ERROR - 2026-09-18 06:22:06 --> n8n Webhook Error: HTTP 500 - {"message":"Error in workflow"}
+WARNING - 2026-09-18 06:22:06 --> n8n chat webhook failed: HTTP 500: {"message":"Error in workflow"}
+DEBUG - 2026-09-18 06:22:06 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-09-18 06:50:43 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-09-18 06:51:07 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-09-18 06:51:37 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-09-18 06:51:42 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-09-18 06:51:55 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2026-09-18 06:52:17 --> [DEPRECATED] Function curl_close() is deprecated since 8.5, as it has no effect since PHP 8.0 in APPPATH\Controllers\Chat.php on line 183.
+ 1 APPPATH\Controllers\Chat.php(87): App\Controllers\Chat->callN8nWebhook('https://ercy.app.n8n.cloud/webhook/6b4d02f2-2163-4140-9002-cfff789693fb/chat', 'bisa kamu hitungkan simulasi jika 20 tahun', 'budi', [], [...])
+ 2 SYSTEMPATH\CodeIgniter.php(974): App\Controllers\Chat->send()
+ 3 SYSTEMPATH\CodeIgniter.php(520): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Chat))
+ 4 SYSTEMPATH\CodeIgniter.php(363): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 8 SYSTEMPATH\rewrite.php(44): require_once('C:\\php\\perumahan\\public\\index.php')
+ERROR - 2026-09-18 06:52:17 --> n8n Webhook Error: HTTP 404 - {"code":404,"message":"The requested webhook \"POST 6b4d02f2-2163-4140-9002-cfff789693fb/chat\" is not registered.","hint":"The workflow must be active for a production URL to run successfully. You can activate the workflow using the toggle in the top-right of the editor. Note that unlike test URL calls, production URL calls aren't shown on the canvas (only in the executions list)"}
+WARNING - 2026-09-18 06:52:17 --> n8n chat webhook failed: HTTP 404: {"code":404,"message":"The requested webhook \"POST 6b4d02f2-2163-4140-9002-cfff789693fb/chat\" is not registered.","hint":"The workflow must be active for a production URL to run successfully. You can activate the workflow using the toggle in the top-right of the editor. Note that unlike test URL calls, production URL calls aren't shown on the canvas (only in the executions list)"}
+DEBUG - 2026-09-18 06:52:17 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2026-09-18 06:52:43 --> [DEPRECATED] Function curl_close() is deprecated since 8.5, as it has no effect since PHP 8.0 in APPPATH\Controllers\Chat.php on line 183.
+ 1 APPPATH\Controllers\Chat.php(87): App\Controllers\Chat->callN8nWebhook('https://ercy.app.n8n.cloud/webhook/6b4d02f2-2163-4140-9002-cfff789693fb/chat', 'kamu ini siapa', 'budi', [...], [...])
+ 2 SYSTEMPATH\CodeIgniter.php(974): App\Controllers\Chat->send()
+ 3 SYSTEMPATH\CodeIgniter.php(520): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Chat))
+ 4 SYSTEMPATH\CodeIgniter.php(363): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 8 SYSTEMPATH\rewrite.php(44): require_once('C:\\php\\perumahan\\public\\index.php')
+ERROR - 2026-09-18 06:52:43 --> n8n Webhook Error: HTTP 404 - {"code":404,"message":"The requested webhook \"POST 6b4d02f2-2163-4140-9002-cfff789693fb/chat\" is not registered.","hint":"The workflow must be active for a production URL to run successfully. You can activate the workflow using the toggle in the top-right of the editor. Note that unlike test URL calls, production URL calls aren't shown on the canvas (only in the executions list)"}
+WARNING - 2026-09-18 06:52:43 --> n8n chat webhook failed: HTTP 404: {"code":404,"message":"The requested webhook \"POST 6b4d02f2-2163-4140-9002-cfff789693fb/chat\" is not registered.","hint":"The workflow must be active for a production URL to run successfully. You can activate the workflow using the toggle in the top-right of the editor. Note that unlike test URL calls, production URL calls aren't shown on the canvas (only in the executions list)"}
+DEBUG - 2026-09-18 06:52:43 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-09-18 06:53:14 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-09-18 06:53:16 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2026-09-18 06:53:27 --> [DEPRECATED] Function curl_close() is deprecated since 8.5, as it has no effect since PHP 8.0 in APPPATH\Controllers\Chat.php on line 183.
+ 1 APPPATH\Controllers\Chat.php(87): App\Controllers\Chat->callN8nWebhook('https://ercy.app.n8n.cloud/webhook/chat', 'kamu ini siapa', 'budi', [...], [...])
+ 2 SYSTEMPATH\CodeIgniter.php(974): App\Controllers\Chat->send()
+ 3 SYSTEMPATH\CodeIgniter.php(520): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Chat))
+ 4 SYSTEMPATH\CodeIgniter.php(363): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 8 SYSTEMPATH\rewrite.php(44): require_once('C:\\php\\perumahan\\public\\index.php')
+ERROR - 2026-09-18 06:53:27 --> n8n Webhook Error: HTTP 500 - {"message":"Error in workflow"}
+WARNING - 2026-09-18 06:53:27 --> n8n chat webhook failed: HTTP 500: {"message":"Error in workflow"}
+DEBUG - 2026-09-18 06:53:27 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2026-09-18 06:53:41 --> [DEPRECATED] Function curl_close() is deprecated since 8.5, as it has no effect since PHP 8.0 in APPPATH\Controllers\Chat.php on line 183.
+ 1 APPPATH\Controllers\Chat.php(87): App\Controllers\Chat->callN8nWebhook('https://ercy.app.n8n.cloud/webhook/chat', 'alamatnya dimana', 'budi', [...], [...])
+ 2 SYSTEMPATH\CodeIgniter.php(974): App\Controllers\Chat->send()
+ 3 SYSTEMPATH\CodeIgniter.php(520): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Chat))
+ 4 SYSTEMPATH\CodeIgniter.php(363): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 8 SYSTEMPATH\rewrite.php(44): require_once('C:\\php\\perumahan\\public\\index.php')
+ERROR - 2026-09-18 06:53:41 --> n8n Webhook Error: HTTP 500 - {"message":"Error in workflow"}
+WARNING - 2026-09-18 06:53:41 --> n8n chat webhook failed: HTTP 500: {"message":"Error in workflow"}
+DEBUG - 2026-09-18 06:53:41 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2026-09-18 06:53:53 --> [DEPRECATED] Function curl_close() is deprecated since 8.5, as it has no effect since PHP 8.0 in APPPATH\Controllers\Chat.php on line 183.
+ 1 APPPATH\Controllers\Chat.php(87): App\Controllers\Chat->callN8nWebhook('https://ercy.app.n8n.cloud/webhook/chat', 'kalau saya mau kpr bisa?', 'budi', [...], [...])
+ 2 SYSTEMPATH\CodeIgniter.php(974): App\Controllers\Chat->send()
+ 3 SYSTEMPATH\CodeIgniter.php(520): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Chat))
+ 4 SYSTEMPATH\CodeIgniter.php(363): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 8 SYSTEMPATH\rewrite.php(44): require_once('C:\\php\\perumahan\\public\\index.php')
+ERROR - 2026-09-18 06:53:53 --> n8n Webhook Error: HTTP 500 - {"message":"Error in workflow"}
+WARNING - 2026-09-18 06:53:53 --> n8n chat webhook failed: HTTP 500: {"message":"Error in workflow"}
+DEBUG - 2026-09-18 06:53:53 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2026-09-18 06:54:19 --> [DEPRECATED] Function curl_close() is deprecated since 8.5, as it has no effect since PHP 8.0 in APPPATH\Controllers\Chat.php on line 183.
+ 1 APPPATH\Controllers\Chat.php(87): App\Controllers\Chat->callN8nWebhook('https://ercy.app.n8n.cloud/webhook/chat', 'jika ada masalah sya kemana', 'budi', [...], [...])
+ 2 SYSTEMPATH\CodeIgniter.php(974): App\Controllers\Chat->send()
+ 3 SYSTEMPATH\CodeIgniter.php(520): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Chat))
+ 4 SYSTEMPATH\CodeIgniter.php(363): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 8 SYSTEMPATH\rewrite.php(44): require_once('C:\\php\\perumahan\\public\\index.php')
+ERROR - 2026-09-18 06:54:19 --> n8n Webhook Error: HTTP 500 - {"message":"Error in workflow"}
+WARNING - 2026-09-18 06:54:19 --> n8n chat webhook failed: HTTP 500: {"message":"Error in workflow"}
+DEBUG - 2026-09-18 06:54:19 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2026-09-18 06:54:33 --> [DEPRECATED] Function curl_close() is deprecated since 8.5, as it has no effect since PHP 8.0 in APPPATH\Controllers\Chat.php on line 183.
+ 1 APPPATH\Controllers\Chat.php(87): App\Controllers\Chat->callN8nWebhook('https://ercy.app.n8n.cloud/webhook/chat', 'sarah ya kamu', 'budi', [...], [...])
+ 2 SYSTEMPATH\CodeIgniter.php(974): App\Controllers\Chat->send()
+ 3 SYSTEMPATH\CodeIgniter.php(520): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Chat))
+ 4 SYSTEMPATH\CodeIgniter.php(363): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 7 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 8 SYSTEMPATH\rewrite.php(44): require_once('C:\\php\\perumahan\\public\\index.php')
+ERROR - 2026-09-18 06:54:33 --> n8n Webhook Error: HTTP 500 - {"message":"Error in workflow"}
+WARNING - 2026-09-18 06:54:33 --> n8n chat webhook failed: HTTP 500: {"message":"Error in workflow"}
+DEBUG - 2026-09-18 06:54:33 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2026-09-18 07:28:20 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
