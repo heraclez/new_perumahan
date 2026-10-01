@@ -8,9 +8,22 @@
             <h5 class="fw-bold text-dark mb-0">Manajemen Akun Admin</h5>
             <div class="small mt-1" style="color: #64748b;">Kelola pengguna dengan hak akses Superadmin dan Admin Sales Marketing</div>
         </div>
-        <a href="<?= site_url('admin/admins/create') ?>" class="btn btn-primary rounded-pill px-3.5">
-            <i class="bi bi-person-plus-fill me-1"></i> Tambah Admin Baru
-        </a>
+        <div class="d-flex align-items-center gap-2">
+            <?php if (!empty($isDeveloper)): ?>
+                <?php if (!empty($showDev)): ?>
+                    <a href="<?= site_url('admin/admins') ?>" class="btn btn-sm btn-outline-secondary rounded-pill px-3" title="Sembunyikan Akun Developer">
+                        <i class="bi bi-eye-slash me-1"></i> Sembunyikan Akun Dev
+                    </a>
+                <?php else: ?>
+                    <a href="<?= site_url('admin/admins?show_dev=1') ?>" class="btn btn-sm btn-outline-danger rounded-pill px-3" title="Tampilkan Akun Developer (Khusus Developer)">
+                        <i class="bi bi-code-slash me-1"></i> Mode Dev (Tampilkan Akun Dev)
+                    </a>
+                <?php endif; ?>
+            <?php endif; ?>
+            <a href="<?= site_url('admin/admins/create') ?>" class="btn btn-primary rounded-pill px-3.5">
+                <i class="bi bi-person-plus-fill me-1"></i> Tambah Admin Baru
+            </a>
+        </div>
     </div>
     <div class="table-responsive">
         <table class="table table-hover align-middle mb-0">
@@ -28,6 +41,14 @@
                 <?php 
                 $currentId = (int) session()->get('admin_id');
                 ?>
+                <?php if (empty($admins)): ?>
+                    <tr>
+                        <td colspan="6" class="text-center py-5 text-muted">
+                            <i class="bi bi-people fs-1 d-block mb-2 opacity-50"></i>
+                            Belum ada akun admin biasa yang terdaftar.
+                        </td>
+                    </tr>
+                <?php endif; ?>
                 <?php foreach ($admins as $user): ?>
                     <tr>
                         <td>

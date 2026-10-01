@@ -21,8 +21,10 @@ class Dashboard extends BaseController
         $availableProperties = $propertyModel->where('status', 'Tersedia')->countAllResults();
         $bookingProperties   = $propertyModel->where('status', 'Booking')->countAllResults();
         $soldProperties      = $propertyModel->where('status', 'Terjual')->countAllResults();
-        $totalLeads          = $leadModel->countAllResults();
-        $totalAdmins         = $adminModel->countAllResults();
+        $isDeveloper         = session()->get('admin_role') === 'Developer';
+        $totalAdmins         = $isDeveloper 
+            ? $adminModel->countAllResults() 
+            : $adminModel->where('role !=', 'Developer')->countAllResults();
 
         // Recent Data
         $recentLeads      = $leadModel->getLeadsWithProperty();

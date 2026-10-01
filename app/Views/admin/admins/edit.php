@@ -45,7 +45,9 @@
                             <select name="role" class="form-select" required>
                                 <option value="Admin" <?= old('role', $admin['role']) === 'Admin' ? 'selected' : '' ?>>Admin (Sales Marketing - Katalog & Leads)</option>
                                 <option value="Superadmin" <?= old('role', $admin['role']) === 'Superadmin' ? 'selected' : '' ?>>Superadmin (Akses Pengaturan & Pengguna)</option>
-                                <option value="Developer" <?= old('role', $admin['role']) === 'Developer' ? 'selected' : '' ?>>Developer (Akses Penuh + Google & SEO Tools)</option>
+                                <?php if (!empty($isDeveloper)): ?>
+                                    <option value="Developer" <?= old('role', $admin['role']) === 'Developer' ? 'selected' : '' ?>>Developer (Akses Penuh + Google & SEO Tools)</option>
+                                <?php endif; ?>
                             </select>
                         </div>
                     </div>

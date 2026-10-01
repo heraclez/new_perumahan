@@ -19,12 +19,24 @@ class Admins extends BaseController
      */
     public function index(): string
     {
-        $admins = $this->adminModel->orderBy('id', 'ASC')->findAll();
+        $currentRole = session()->get('admin_role');
+        $showDev = ($this->request->getGet('show_dev') === '1') && ($currentRole === 'Developer');
+
+        $query = $this->adminModel->orderBy('id', 'ASC');
+
+        // Sembunyikan akun Developer secara default atau jika yang login bukan Developer
+        if (!$showDev) {
+            $query->where('role !=', 'Developer');
+        }
+
+        $admins = $query->findAll();
 
         $data = [
-            'title'    => 'Manajemen Akun Admin (RBAC)',
-            'settings' => $this->settings,
-            'admins'   => $admins,
+            'title'       => 'Manajemen Akun Admin (RBAC)',
+            'settings'    => $this->settings,
+            'admins'      => $admins,
+            'showDev'     => $showDev,
+            'isDeveloper' => ($currentRole === 'Developer'),
         ];
 
         return view('admin/admins/index', $data);
@@ -36,8 +48,9 @@ class Admins extends BaseController
     public function create(): string
     {
         $data = [
-            'title'    => 'Tambah Akun Admin Baru',
-            'settings' => $this->settings,
+            'title'       => 'Tambah Akun Admin Baru',
+            'settings'    => $this->settings,
+            'isDeveloper' => (session()->get('admin_role') === 'Developer'),
         ];
 
         return view('admin/admins/create', $data);
@@ -48,12 +61,17 @@ class Admins extends BaseController
      */
     public function store()
     {
+        $currentRole = session()->get('admin_role');
+        $allowedRoles = ($currentRole === 'Developer') 
+            ? 'Developer,Superadmin,Admin' 
+            : 'Superadmin,Admin';
+
         $rules = [
             'name'     => 'required|min_length[3]|max_length[100]',
             'email'    => 'required|valid_email|is_unique[admins.email]',
             'username' => 'required|alpha_numeric_punct|min_length[3]|max_length[50]|is_unique[admins.username]',
             'password' => 'required|min_length[6]',
-            'role'     => 'required|in_list[Developer,Superadmin,Admin]',
+            'role'     => "required|in_list[{$allowedRoles}]",
         ];
 
         if (!$this->validate($rules)) {
@@ -79,14 +97,18 @@ class Admins extends BaseController
     public function edit(int $id)
     {
         $admin = $this->adminModel->find($id);
-        if (!$admin) {
+        $currentRole = session()->get('admin_role');
+
+        // Tolak akses jika akun yang diedit adalah Developer dan yang mengakses bukan Developer
+        if (!$admin || ($admin['role'] === 'Developer' && $currentRole !== 'Developer')) {
             return redirect()->to(site_url('admin/admins'))->with('error', 'Akun admin tidak ditemukan.');
         }
 
         $data = [
-            'title'    => 'Edit Akun: ' . $admin['name'],
-            'settings' => $this->settings,
-            'admin'    => $admin,
+            'title'       => 'Edit Akun: ' . $admin['name'],
+            'settings'    => $this->settings,
+            'admin'       => $admin,
+            'isDeveloper' => ($currentRole === 'Developer'),
         ];
 
         return view('admin/admins/edit', $data);
@@ -98,16 +120,23 @@ class Admins extends BaseController
     public function update(int $id)
     {
         $admin = $this->adminModel->find($id);
-        if (!$admin) {
+        $currentRole = session()->get('admin_role');
+
+        // Tolak akses jika akun yang diedit adalah Developer dan yang mengakses bukan Developer
+        if (!$admin || ($admin['role'] === 'Developer' && $currentRole !== 'Developer')) {
             return redirect()->to(site_url('admin/admins'))->with('error', 'Akun admin tidak ditemukan.');
         }
+
+        $allowedRoles = ($currentRole === 'Developer') 
+            ? 'Developer,Superadmin,Admin' 
+            : 'Superadmin,Admin';
 
         $rules = [
             'name'     => 'required|min_length[3]|max_length[100]',
             'email'    => "required|valid_email|is_unique[admins.email,id,{$id}]",
             'username' => "required|alpha_numeric_punct|min_length[3]|max_length[50]|is_unique[admins.username,id,{$id}]",
             'password' => 'permit_empty|min_length[6]',
-            'role'     => 'required|in_list[Developer,Superadmin,Admin]',
+            'role'     => "required|in_list[{$allowedRoles}]",
         ];
 
         if (!$this->validate($rules)) {
@@ -148,14 +177,17 @@ class Admins extends BaseController
     public function delete(int $id)
     {
         $currentLoggedInId = (int) session()->get('admin_id');
-        
-        // Superadmin tidak bisa menghapus akunnya sendiri yang sedang login
+        $currentRole = session()->get('admin_role');
+
+        // Tidak bisa menghapus akunnya sendiri yang sedang login
         if ($currentLoggedInId === $id) {
             return redirect()->to(site_url('admin/admins'))->with('error', 'Anda tidak dapat menghapus akun Anda sendiri yang sedang aktif login!');
         }
 
         $admin = $this->adminModel->find($id);
-        if (!$admin) {
+
+        // Tolak jika akun target adalah Developer dan user bukan Developer
+        if (!$admin || ($admin['role'] === 'Developer' && $currentRole !== 'Developer')) {
             return redirect()->to(site_url('admin/admins'))->with('error', 'Akun tidak ditemukan.');
         }
 
