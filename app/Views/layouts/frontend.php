@@ -53,6 +53,7 @@ $isAdminLoggedIn = session()->get('is_admin_logged_in') ?? false;
     <?php if (!empty($settings['meta_keywords'])): ?>
     <meta name="keywords" content="<?= esc($settings['meta_keywords']) ?>">
     <?php endif; ?>
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
     <link rel="canonical" href="<?= current_url() ?>">
 
     <?php if (!empty($companyLogo) && file_exists(FCPATH . 'uploads/settings/' . $companyLogo)): ?>
@@ -85,8 +86,31 @@ $isAdminLoggedIn = session()->get('is_admin_logged_in') ?? false;
         <meta property="og:site_name" content="<?= esc($companyName) ?>">
         <?php if (!empty($companyLogo)): ?>
         <meta property="og:image" content="<?= base_url('uploads/settings/' . esc($companyLogo)) ?>">
+        <meta property="og:image:width" content="1200">
+        <meta property="og:image:height" content="630">
         <?php endif; ?>
+        <meta name="twitter:card" content="summary_large_image">
+        <meta name="twitter:title" content="<?= esc($title ?? $companyName) ?>">
+        <meta name="twitter:description" content="<?= esc($meta_description ?? $companyTagline) ?>">
     <?php endif; ?>
+
+    <!-- Schema.org Structured Data (WebSite Sitelinks Searchbox) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": <?= json_encode($companyName) ?>,
+      "url": <?= json_encode(site_url('/')) ?>,
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": {
+          "@type": "EntryPoint",
+          "urlTemplate": <?= json_encode(site_url('properti') . '?keyword={search_term_string}') ?>
+        },
+        "query-input": "required name=search_term_string"
+      }
+    }
+    </script>
 
     <!-- Schema.org Structured Data (RealEstateAgent) -->
     <script type="application/ld+json">
@@ -111,14 +135,24 @@ $isAdminLoggedIn = session()->get('is_admin_logged_in') ?? false;
     </script>
     <?= $this->renderSection('schema_json_ld') ?>
 
-    <!-- Fonts & Icons (with Inter & Playfair Display) -->
+    <!-- Fonts & Icons (Optimized: Plus Jakarta Sans & Space Grotesk) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&family=Onest:wght@400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;600;700;800;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
     
-    <!-- Bootstrap 5 CSS -->
+    <!-- Bootstrap Icons (Local Vendor with CDN Fallback) -->
+    <?php if (file_exists(FCPATH . 'assets/vendor/bootstrap-icons/bootstrap-icons.min.css')): ?>
+    <link rel="stylesheet" href="<?= base_url('assets/vendor/bootstrap-icons/bootstrap-icons.min.css') ?>">
+    <?php else: ?>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <?php endif; ?>
+    
+    <!-- Bootstrap 5 CSS (Local Vendor with CDN Fallback) -->
+    <?php if (file_exists(FCPATH . 'assets/vendor/bootstrap/css/bootstrap.min.css')): ?>
+    <link rel="stylesheet" href="<?= base_url('assets/vendor/bootstrap/css/bootstrap.min.css') ?>">
+    <?php else: ?>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <?php endif; ?>
 
     <!-- Dynamic Theme Color, Gradient & Typography Override -->
     <style>
@@ -727,9 +761,18 @@ $isAdminLoggedIn = session()->get('is_admin_logged_in') ?? false;
         </div>
     </div>
 
-    <!-- Scripts -->
+    <!-- Scripts (Local Vendor with CDN Fallback) -->
+    <?php if (file_exists(FCPATH . 'assets/vendor/jquery/jquery.min.js')): ?>
+    <script src="<?= base_url('assets/vendor/jquery/jquery.min.js') ?>"></script>
+    <?php else: ?>
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <?php endif; ?>
+
+    <?php if (file_exists(FCPATH . 'assets/vendor/bootstrap/js/bootstrap.bundle.min.js')): ?>
+    <script src="<?= base_url('assets/vendor/bootstrap/js/bootstrap.bundle.min.js') ?>"></script>
+    <?php else: ?>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <?php endif; ?>
 
     <script>
         // Global Toast Notification Helper

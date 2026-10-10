@@ -5,8 +5,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title><?= esc($title ?? 'Pilih Media') ?></title>
   
-  <!-- jQuery UI CSS -->
+  <!-- jQuery UI CSS (Local Vendor with CDN Fallback) -->
+  <?php if (file_exists(FCPATH . 'assets/vendor/jquery-ui/jquery-ui.min.css')): ?>
+  <link rel="stylesheet" href="<?= base_url('assets/vendor/jquery-ui/jquery-ui.min.css') ?>" />
+  <?php else: ?>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.13.2/themes/base/jquery-ui.min.css" />
+  <?php endif; ?>
   <!-- elFinder CSS -->
   <link rel="stylesheet" href="<?= base_url('assets/elfinder/css/elfinder.min.css') ?>" />
   <link rel="stylesheet" href="<?= base_url('assets/elfinder/css/theme.css') ?>" />
@@ -33,10 +37,19 @@
 
   <div id="elfinder"></div>
 
-  <!-- jQuery -->
+  <!-- jQuery (Local Vendor with CDN Fallback) -->
+  <?php if (file_exists(FCPATH . 'assets/vendor/jquery/jquery.min.js')): ?>
+  <script src="<?= base_url('assets/vendor/jquery/jquery.min.js') ?>"></script>
+  <?php else: ?>
   <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-  <!-- jQuery UI JS -->
+  <?php endif; ?>
+
+  <!-- jQuery UI JS (Local Vendor with CDN Fallback) -->
+  <?php if (file_exists(FCPATH . 'assets/vendor/jquery-ui/jquery-ui.min.js')): ?>
+  <script src="<?= base_url('assets/vendor/jquery-ui/jquery-ui.min.js') ?>"></script>
+  <?php else: ?>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.13.2/jquery-ui.min.js"></script>
+  <?php endif; ?>
   <!-- elFinder JS -->
   <script src="<?= base_url('assets/elfinder/js/elfinder.min.js') ?>"></script>
   <!-- elFinder Indonesian Lang -->

@@ -5,6 +5,8 @@
     <meta property="og:title" content="<?= esc($og_title) ?>">
     <meta property="og:description" content="<?= esc($og_description) ?>">
     <meta property="og:image" content="<?= esc($og_image) ?>">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
     <meta property="og:url" content="<?= esc($og_url) ?>">
     <meta property="og:site_name" content="<?= esc($settings['company_name'] ?? 'Grand Harmoni') ?>">
     <meta property="article:published_time" content="<?= esc($article['created_at']) ?>">

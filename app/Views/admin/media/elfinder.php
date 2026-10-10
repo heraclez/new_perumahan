@@ -1,8 +1,12 @@
 <?= $this->extend('layouts/admin') ?>
 
 <?= $this->section('styles') ?>
-<!-- jQuery UI CSS -->
+<!-- jQuery UI CSS (Local Vendor with CDN Fallback) -->
+<?php if (file_exists(FCPATH . 'assets/vendor/jquery-ui/jquery-ui.min.css')): ?>
+<link rel="stylesheet" href="<?= base_url('assets/vendor/jquery-ui/jquery-ui.min.css') ?>" />
+<?php else: ?>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.13.2/themes/base/jquery-ui.min.css" />
+<?php endif; ?>
 <!-- elFinder CSS -->
 <link rel="stylesheet" href="<?= base_url('assets/elfinder/css/elfinder.min.css') ?>" />
 <link rel="stylesheet" href="<?= base_url('assets/elfinder/css/theme.css') ?>" />
@@ -93,8 +97,12 @@
 <?= $this->endSection() ?>
 
 <?= $this->section('scripts') ?>
-<!-- jQuery UI JS -->
+<!-- jQuery UI JS (Local Vendor with CDN Fallback) -->
+<?php if (file_exists(FCPATH . 'assets/vendor/jquery-ui/jquery-ui.min.js')): ?>
+<script src="<?= base_url('assets/vendor/jquery-ui/jquery-ui.min.js') ?>"></script>
+<?php else: ?>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.13.2/jquery-ui.min.js"></script>
+<?php endif; ?>
 <!-- elFinder JS -->
 <script src="<?= base_url('assets/elfinder/js/elfinder.min.js') ?>"></script>
 <!-- elFinder Indonesian Lang -->

@@ -47,27 +47,27 @@ $primary = $settings['primary_color'] ?? '#0d6efd';
     <meta name="csrf-header" content="<?= csrf_header() ?>">
 
     <!--begin::Fonts-->
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/@fontsource/source-sans-3@5.0.12/index.css"
-      crossorigin="anonymous"
-    />
+    <?php if (file_exists(FCPATH . 'assets/vendor/source-sans-3/index.css')): ?>
+    <link rel="stylesheet" href="<?= base_url('assets/vendor/source-sans-3/index.css') ?>" />
+    <?php else: ?>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/source-sans-3@5.0.12/index.css" crossorigin="anonymous" />
+    <?php endif; ?>
     <!--end::Fonts-->
 
     <!--begin::Third Party Plugin(OverlayScrollbars)-->
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/overlayscrollbars@2.11.0/styles/overlayscrollbars.min.css"
-      crossorigin="anonymous"
-    />
+    <?php if (file_exists(FCPATH . 'assets/vendor/overlayscrollbars/css/overlayscrollbars.min.css')): ?>
+    <link rel="stylesheet" href="<?= base_url('assets/vendor/overlayscrollbars/css/overlayscrollbars.min.css') ?>" />
+    <?php else: ?>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/overlayscrollbars@2.11.0/styles/overlayscrollbars.min.css" crossorigin="anonymous" />
+    <?php endif; ?>
     <!--end::Third Party Plugin(OverlayScrollbars)-->
 
     <!--begin::Third Party Plugin(Bootstrap Icons)-->
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
-      crossorigin="anonymous"
-    />
+    <?php if (file_exists(FCPATH . 'assets/vendor/bootstrap-icons/bootstrap-icons.min.css')): ?>
+    <link rel="stylesheet" href="<?= base_url('assets/vendor/bootstrap-icons/bootstrap-icons.min.css') ?>" />
+    <?php else: ?>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" crossorigin="anonymous" />
+    <?php endif; ?>
     <!--end::Third Party Plugin(Bootstrap Icons)-->
 
     <!--begin::Required Plugin(AdminLTE)-->
@@ -429,21 +429,27 @@ $primary = $settings['primary_color'] ?? '#0d6efd';
     <!--end::Third Party Plugin(OverlayScrollbars)-->
 
     <!--begin::Required Plugin(popperjs for Bootstrap 5)-->
-    <script
-      src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
-      crossorigin="anonymous"
-    ></script>
+    <?php if (file_exists(FCPATH . 'assets/vendor/popper/popper.min.js')): ?>
+    <script src="<?= base_url('assets/vendor/popper/popper.min.js') ?>"></script>
+    <?php else: ?>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" crossorigin="anonymous"></script>
+    <?php endif; ?>
     <!--end::Required Plugin(popperjs for Bootstrap 5)-->
 
     <!--begin::Required Plugin(Bootstrap 5)-->
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-      crossorigin="anonymous"
-    ></script>
+    <?php if (file_exists(FCPATH . 'assets/vendor/bootstrap/js/bootstrap.bundle.min.js')): ?>
+    <script src="<?= base_url('assets/vendor/bootstrap/js/bootstrap.bundle.min.js') ?>"></script>
+    <?php else: ?>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+    <?php endif; ?>
     <!--end::Required Plugin(Bootstrap 5)-->
 
     <!--begin::Third Party Plugin(jQuery)-->
+    <?php if (file_exists(FCPATH . 'assets/vendor/jquery/jquery.min.js')): ?>
+    <script src="<?= base_url('assets/vendor/jquery/jquery.min.js') ?>"></script>
+    <?php else: ?>
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <?php endif; ?>
     <!--end::Third Party Plugin(jQuery)-->
 
     <!--begin::Required Plugin(AdminLTE)-->
