@@ -576,11 +576,25 @@ $isAdminLoggedIn = session()->get('is_admin_logged_in') ?? false;
                         <h4 class="fw-bold mb-0 text-white"><?= esc($companyName) ?></h4>
                     </div>
                     <p class="text-white-50 mb-3" style="color: #cbd5e1 !important;"><?= esc($settings['company_about'] ?? 'Hunian asri dan modern dengan fasilitas lengkap terintegrasi serta akses transportasi strategis.') ?></p>
-                    <div class="d-flex gap-3">
-                        <a href="https://wa.me/<?= esc($companyWa) ?>" target="_blank" class="text-white fs-5"><i class="bi bi-whatsapp"></i></a>
-                        <a href="mailto:<?= esc($companyEmail) ?>" class="text-white fs-5"><i class="bi bi-envelope"></i></a>
-                        <a href="#" class="text-white fs-5"><i class="bi bi-instagram"></i></a>
-                        <a href="#" class="text-white fs-5"><i class="bi bi-facebook"></i></a>
+                    <div class="d-flex gap-3 align-items-center">
+                        <?php if (!empty($companyWa)): ?>
+                            <a href="https://wa.me/<?= esc($companyWa) ?>" target="_blank" rel="noopener noreferrer" class="text-white fs-5" title="WhatsApp"><i class="bi bi-whatsapp"></i></a>
+                        <?php endif; ?>
+                        <?php if (!empty($companyEmail)): ?>
+                            <a href="mailto:<?= esc($companyEmail) ?>" class="text-white fs-5" title="Email"><i class="bi bi-envelope"></i></a>
+                        <?php endif; ?>
+                        <?php if (!empty($settings['social_instagram'])): ?>
+                            <a href="<?= esc($settings['social_instagram']) ?>" target="_blank" rel="noopener noreferrer" class="text-white fs-5" title="Instagram"><i class="bi bi-instagram"></i></a>
+                        <?php endif; ?>
+                        <?php if (!empty($settings['social_facebook'])): ?>
+                            <a href="<?= esc($settings['social_facebook']) ?>" target="_blank" rel="noopener noreferrer" class="text-white fs-5" title="Facebook"><i class="bi bi-facebook"></i></a>
+                        <?php endif; ?>
+                        <?php if (!empty($settings['social_tiktok'])): ?>
+                            <a href="<?= esc($settings['social_tiktok']) ?>" target="_blank" rel="noopener noreferrer" class="text-white fs-5" title="TikTok"><i class="bi bi-tiktok"></i></a>
+                        <?php endif; ?>
+                        <?php if (!empty($settings['social_youtube'])): ?>
+                            <a href="<?= esc($settings['social_youtube']) ?>" target="_blank" rel="noopener noreferrer" class="text-white fs-5" title="YouTube"><i class="bi bi-youtube"></i></a>
+                        <?php endif; ?>
                     </div>
                 </div>
                 <div class="col-lg-4">

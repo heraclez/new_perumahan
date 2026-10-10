@@ -110,6 +110,34 @@
                 </div>
             </div>
 
+            <!-- Media Sosial Resmi -->
+            <div class="card p-4 shadow-sm mb-4">
+                <h5 class="fw-bold text-dark mb-3"><i class="bi bi-share text-primary me-2"></i>Media Sosial Resmi</h5>
+                <p class="small text-muted mb-3">Tautan media sosial yang akan ditampilkan pada footer website publik. Kosongkan jika belum tersedia.</p>
+                
+                <div class="row g-3 mb-3">
+                    <div class="col-md-6">
+                        <label class="form-label"><i class="bi bi-instagram text-danger me-1"></i> Instagram URL</label>
+                        <input type="url" name="social_instagram" class="form-control" placeholder="https://instagram.com/username" value="<?= old('social_instagram', $settings['social_instagram'] ?? '') ?>">
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label"><i class="bi bi-facebook text-primary me-1"></i> Facebook URL</label>
+                        <input type="url" name="social_facebook" class="form-control" placeholder="https://facebook.com/username" value="<?= old('social_facebook', $settings['social_facebook'] ?? '') ?>">
+                    </div>
+                </div>
+
+                <div class="row g-3 mb-0">
+                    <div class="col-md-6">
+                        <label class="form-label"><i class="bi bi-tiktok text-dark me-1"></i> TikTok URL</label>
+                        <input type="url" name="social_tiktok" class="form-control" placeholder="https://tiktok.com/@username" value="<?= old('social_tiktok', $settings['social_tiktok'] ?? '') ?>">
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label"><i class="bi bi-youtube text-danger me-1"></i> YouTube URL</label>
+                        <input type="url" name="social_youtube" class="form-control" placeholder="https://youtube.com/@channel" value="<?= old('social_youtube', $settings['social_youtube'] ?? '') ?>">
+                    </div>
+                </div>
+            </div>
+
             <!-- Preset Gaya Desain (6 Pilihan Tema Eksklusif) -->
             <div class="card p-4 shadow-sm mb-4">
                 <div class="d-flex align-items-center justify-content-between mb-2">

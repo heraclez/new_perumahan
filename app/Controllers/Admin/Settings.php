@@ -49,6 +49,10 @@ class Settings extends BaseController
             'google_analytics_id'        => 'permit_empty|max_length[50]',
             'google_search_console_code' => 'permit_empty|max_length[150]',
             'meta_keywords'              => 'permit_empty|max_length[255]',
+            'social_instagram'           => 'permit_empty|max_length[255]',
+            'social_facebook'            => 'permit_empty|max_length[255]',
+            'social_tiktok'              => 'permit_empty|max_length[255]',
+            'social_youtube'             => 'permit_empty|max_length[255]',
             'global_brochure_pdf'  => 'permit_empty|ext_in[global_brochure_pdf,pdf]|max_size[global_brochure_pdf,10240]',
             'promo_image_file'     => 'permit_empty|is_image[promo_image_file]|mime_in[promo_image_file,image/jpg,image/jpeg,image/png,image/webp]|max_size[promo_image_file,3072]',
             'company_logo'         => 'permit_empty|is_image[company_logo]|mime_in[company_logo,image/jpg,image/jpeg,image/png,image/webp,image/svg+xml]|max_size[company_logo,3072]',
@@ -99,6 +103,10 @@ class Settings extends BaseController
             'google_analytics_id'        => trim((string) $this->request->getPost('google_analytics_id')),
             'google_search_console_code' => trim((string) $this->request->getPost('google_search_console_code')),
             'meta_keywords'              => trim((string) $this->request->getPost('meta_keywords')),
+            'social_instagram'           => trim((string) $this->request->getPost('social_instagram')),
+            'social_facebook'            => trim((string) $this->request->getPost('social_facebook')),
+            'social_tiktok'              => trim((string) $this->request->getPost('social_tiktok')),
+            'social_youtube'             => trim((string) $this->request->getPost('social_youtube')),
         ];
 
         // Helper to normalize file manager URLs to local relative path or clean filename
