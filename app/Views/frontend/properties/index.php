@@ -11,6 +11,32 @@
 </div>
 
 <div class="container py-5">
+    <!-- E-Catalog Lead Magnet Banner -->
+    <div class="card border-0 rounded-4 shadow-sm mb-5 overflow-hidden position-relative" style="background: linear-gradient(135deg, var(--bs-primary, #1e3a8a) 0%, var(--bs-secondary, #0d9488) 100%);">
+        <div class="position-absolute end-0 top-0 h-100 d-none d-lg-block opacity-10 pe-4">
+            <i class="bi bi-file-earmark-pdf" style="font-size: 11rem; line-height: 1;"></i>
+        </div>
+        <div class="card-body p-4 p-md-5 text-white position-relative z-1">
+            <div class="row align-items-center g-4">
+                <div class="col-lg-8">
+                    <span class="badge bg-white bg-opacity-25 text-white rounded-pill px-3 py-1.5 mb-2 fw-semibold">
+                        <i class="bi bi-file-earmark-pdf-fill text-warning me-1"></i> E-Katalog &amp; Rekap Price List
+                    </span>
+                    <h3 class="fw-bold text-white mb-2">Ingin Rekap Seluruh Tipe Rumah Sekaligus?</h3>
+                    <p class="text-white text-opacity-75 mb-0 small" style="max-width: 620px; line-height: 1.6;">
+                        Unduh berkas PDF resmi berisi kompilasi seluruh denah tipe unit, spesifikasi material, siteplan kavling, serta estimasi tabel cicilan KPR dalam satu dokumen lengkap.
+                    </p>
+                </div>
+                <div class="col-lg-4 text-lg-end">
+                    <button type="button" class="btn btn-warning btn-lg rounded-pill px-4 py-2.5 fw-bold shadow text-dark d-inline-flex align-items-center gap-2" data-bs-toggle="modal" data-bs-target="#modalCatalogLead">
+                        <i class="bi bi-download"></i>
+                        <span>Unduh E-Katalog (PDF)</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- Filter Card -->
     <div class="card card-custom border-0 p-4 mb-5 bg-white">
         <form method="GET" action="<?= site_url('properti') ?>" class="row g-3 align-items-end">
@@ -157,4 +183,147 @@
     </div>
 </div>
 
+<!-- ========================================== -->
+<!-- MODAL LEAD MAGNET E-KATALOG LENGKAP -->
+<!-- ========================================== -->
+<div class="modal fade" id="modalCatalogLead" tabindex="-1" aria-labelledby="modalCatalogLeadLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content border-0 shadow-lg rounded-4 overflow-hidden">
+            <div class="modal-header bg-primary text-white border-0 py-3">
+                <div class="d-flex align-items-center gap-2">
+                    <i class="bi bi-file-earmark-pdf-fill fs-4 text-warning"></i>
+                    <h5 class="modal-title fw-bold mb-0 text-white" id="modalCatalogLeadLabel">Unduh E-Katalog Lengkap</h5>
+                </div>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body p-4">
+                <p class="text-muted small mb-3">
+                    Silakan isi data singkat di bawah ini. Berkas resmi PDF <strong>E-Katalog &amp; Rekap Price List</strong> akan langsung diunduh otomatis ke perangkat Anda.
+                </p>
+
+                <div id="catalogLeadAlert"></div>
+
+                <form id="formCatalogLead">
+                    <?= csrf_field() ?>
+                    <input type="hidden" name="property_id" value="">
+
+                    <div class="mb-3">
+                        <label class="form-label fw-bold small text-muted">Nama Lengkap Anda <span class="text-danger">*</span></label>
+                        <div class="input-group">
+                            <span class="input-group-text bg-light"><i class="bi bi-person text-muted"></i></span>
+                            <input type="text" name="nama_prospek" id="catalogLeadName" class="form-control" placeholder="Contoh: Budi Santoso" required>
+                        </div>
+                        <div class="invalid-feedback" id="err_catalog_nama"></div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label fw-bold small text-muted">Nomor WhatsApp Aktif <span class="text-danger">*</span></label>
+                        <div class="input-group">
+                            <span class="input-group-text bg-light"><i class="bi bi-whatsapp text-muted"></i></span>
+                            <input type="tel" name="no_wa" id="catalogLeadWa" class="form-control" placeholder="Contoh: 081234567890" required>
+                        </div>
+                        <div class="invalid-feedback" id="err_catalog_wa"></div>
+                        <small class="text-muted" style="font-size: 0.72rem;">* Data Anda terlindungi aman dan hanya digunakan untuk konfirmasi info unit.</small>
+                    </div>
+
+                    <div class="d-grid mt-4">
+                        <button type="submit" class="btn btn-primary py-2.5 rounded-pill fw-bold" id="btnSubmitCatalogLead">
+                            <i class="bi bi-download me-1"></i> Verifikasi &amp; Unduh E-Katalog Sekarang
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
 <?= $this->endSection() ?>
+
+<?= $this->section('scripts') ?>
+<script>
+$(document).ready(function() {
+    // 1. Auto-fill from localStorage if visitor previously registered
+    try {
+        var savedLead = JSON.parse(localStorage.getItem('va_user_lead') || '{}');
+        if (savedLead.nama) {
+            $('#catalogLeadName').val(savedLead.nama);
+        }
+        if (savedLead.phone) {
+            $('#catalogLeadWa').val(savedLead.phone);
+        }
+    } catch(e) {}
+
+    // 2. AJAX Submission for Global E-Catalog Lead Magnet
+    $('#formCatalogLead').on('submit', function(e) {
+        e.preventDefault();
+        var form = $(this);
+        var btn = $('#btnSubmitCatalogLead');
+
+        btn.prop('disabled', true).html('<span class="spinner-border spinner-border-sm me-2"></span> Memverifikasi &amp; mengunduh...');
+        $('.invalid-feedback').text('').hide();
+        $('.form-control').removeClass('is-invalid');
+        $('#catalogLeadAlert').empty();
+
+        $.ajax({
+            url: "<?= site_url('leads/store') ?>",
+            type: "POST",
+            data: form.serialize(),
+            dataType: "json",
+            success: function(res) {
+                if (res.success) {
+                    // Save to localStorage
+                    try {
+                        var nameVal = $('#catalogLeadName').val().trim();
+                        var waVal = $('#catalogLeadWa').val().trim();
+                        localStorage.setItem('va_user_lead', JSON.stringify({
+                            nama: nameVal,
+                            phone: waVal,
+                            submitted: true
+                        }));
+                    } catch(e) {}
+
+                    $('#catalogLeadAlert').html(
+                        '<div class="alert alert-success border-0 small"><i class="bi bi-check-circle-fill me-1"></i> ' + res.message + '</div>'
+                    );
+
+                    // Trigger direct download
+                    setTimeout(function() {
+                        window.location.href = res.download_url;
+                    }, 800);
+
+                    // Close modal smoothly
+                    setTimeout(function() {
+                        var modalEl = document.getElementById('modalCatalogLead');
+                        if (modalEl) {
+                            var modal = bootstrap.Modal.getInstance(modalEl);
+                            if (modal) modal.hide();
+                        }
+                        btn.prop('disabled', false).html('<i class="bi bi-download me-1"></i> Verifikasi &amp; Unduh E-Katalog Sekarang');
+                        $('#catalogLeadAlert').empty();
+                    }, 2400);
+                }
+            },
+            error: function(xhr) {
+                btn.prop('disabled', false).html('<i class="bi bi-download me-1"></i> Verifikasi &amp; Unduh E-Katalog Sekarang');
+                if (xhr.status === 422 && xhr.responseJSON && xhr.responseJSON.errors) {
+                    var errors = xhr.responseJSON.errors;
+                    if (errors.nama_prospek) {
+                        $('#catalogLeadName').addClass('is-invalid');
+                        $('#err_catalog_nama').text(errors.nama_prospek).show();
+                    }
+                    if (errors.no_wa) {
+                        $('#catalogLeadWa').addClass('is-invalid');
+                        $('#err_catalog_wa').text(errors.no_wa).show();
+                    }
+                } else {
+                    $('#catalogLeadAlert').html(
+                        '<div class="alert alert-danger border-0 small"><i class="bi bi-exclamation-triangle-fill me-1"></i> Terjadi kendala saat memproses data. Silakan coba kembali.</div>'
+                    );
+                }
+            }
+        });
+    });
+});
+</script>
+<?= $this->endSection() ?>
+
