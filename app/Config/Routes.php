@@ -80,7 +80,7 @@ $routes->group('admin', ['filter' => 'admin_auth'], function ($routes) {
         $routes->get('/', 'Admin\Media::manager');
         $routes->get('manager', 'Admin\Media::manager');
         $routes->get('popup', 'Admin\Media::popup');
-        $routes->match(['get', 'post'], 'connector', 'Admin\Media::connector');
+        $routes->match(['GET', 'POST'], 'connector', 'Admin\Media::connector');
         $routes->get('classic', 'Admin\Media::index');
         $routes->post('upload', 'Admin\Media::upload');
         $routes->post('delete/(:num)', 'Admin\Media::delete/$1');

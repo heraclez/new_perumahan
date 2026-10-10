@@ -95,11 +95,15 @@
                         $mainImg = str_starts_with($first, 'http') ? $first : base_url('uploads/properties/' . $first);
                     }
                     ?>
-                    <img id="mainGalleryImg" src="<?= esc($mainImg) ?>" class="w-100 object-fit-cover" alt="Fasad Utama Rumah <?= esc($property['title']) ?> - <?= esc($settings['company_name'] ?? 'Grand Harmoni') ?>" fetchpriority="high" decoding="async" style="height: 440px;">
+                    <img id="mainGalleryImg" src="<?= esc($mainImg) ?>" class="w-100 object-fit-cover" alt="Fasad Utama Rumah <?= esc($property['title']) ?> - <?= esc($settings['company_name'] ?? 'Grand Harmoni') ?>" fetchpriority="high" decoding="async" style="height: 440px; cursor: pointer;" onclick="openLightbox()">
                     
                     <span class="position-absolute top-0 start-0 m-3 badge <?= $property['status_badge'] ?? 'bg-success' ?> rounded-pill px-3 py-2 fs-6 shadow-sm">
                         <i class="bi bi-tag-fill me-1"></i> <?= esc($property['status_label'] ?? $property['status']) ?>
                     </span>
+
+                    <button type="button" class="btn btn-sm btn-dark bg-opacity-75 text-white rounded-pill px-3 py-1 position-absolute bottom-0 end-0 m-3 shadow-sm border-0 d-flex align-items-center gap-1" onclick="openLightbox()" style="backdrop-filter: blur(4px); font-size: 0.8rem;">
+                        <i class="bi bi-arrows-fullscreen"></i> <span>Perbesar Foto</span>
+                    </button>
                 </div>
 
                 <!-- Thumbnail Navigation -->
@@ -384,7 +388,7 @@
                         <div class="d-flex justify-content-center gap-2">
                             <a href="https://api.whatsapp.com/send?text=<?= urlencode($property['title'] . ' - Cek rumah ini: ' . current_url()) ?>" target="_blank" class="btn btn-sm btn-light rounded-circle p-2 text-success" title="Bagikan ke WhatsApp"><i class="bi bi-whatsapp fs-6"></i></a>
                             <a href="https://www.facebook.com/sharer/sharer.php?u=<?= urlencode(current_url()) ?>" target="_blank" class="btn btn-sm btn-light rounded-circle p-2 text-primary" title="Bagikan ke Facebook"><i class="bi bi-facebook fs-6"></i></a>
-                            <button class="btn btn-sm btn-light rounded-circle p-2 text-dark" onclick="navigator.clipboard.writeText('<?= current_url() ?>'); alert('Link berhasil disalin ke clipboard!');" title="Salin Link"><i class="bi bi-link-45deg fs-6"></i></button>
+                            <button type="button" class="btn btn-sm btn-light rounded-circle p-2 text-dark" onclick="copyPropertyUrl()" title="Salin Tautan"><i class="bi bi-link-45deg fs-6"></i></button>
                         </div>
                     </div>
                 </div>
@@ -416,6 +420,42 @@
                         </div>
                     </div>
                 <?php endif; ?>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ========================================== -->
+<!-- MOBILE STICKY BOTTOM ACTION BAR (Thumb-friendly CTA) -->
+<!-- ========================================== -->
+<div class="d-md-none fixed-bottom bg-white border-top shadow-lg py-2 px-3 z-3" style="border-top-left-radius: 16px; border-top-right-radius: 16px; box-shadow: 0 -4px 20px rgba(0,0,0,0.08) !important;">
+    <div class="d-flex align-items-center justify-content-between gap-2">
+        <div class="lh-sm">
+            <span class="text-muted d-block text-uppercase fw-semibold" style="font-size: 0.65rem; letter-spacing: 0.5px;">Harga Mulai</span>
+            <span class="fw-extrabold text-primary" style="font-size: 1.05rem;">
+                Rp <?= number_format($property['harga'], 0, ',', '.') ?>
+            </span>
+        </div>
+        <div class="d-flex gap-2">
+            <button type="button" class="btn btn-outline-primary btn-sm rounded-pill px-3 py-2 fw-bold d-flex align-items-center gap-1" data-bs-toggle="modal" data-bs-target="#modalLeadMagnet" style="font-size: 0.8rem;">
+                <i class="bi bi-file-earmark-pdf-fill"></i> <span>Brosur</span>
+            </button>
+            <a href="<?= $waUrl ?>" target="_blank" class="btn btn-success btn-sm rounded-pill px-3 py-2 fw-bold d-flex align-items-center gap-1 shadow-sm" style="font-size: 0.8rem;">
+                <i class="bi bi-whatsapp"></i> <span>Tanya WA</span>
+            </a>
+        </div>
+    </div>
+</div>
+
+<!-- ========================================== -->
+<!-- FULLSCREEN LIGHTBOX MODAL (Image Zoom Preview) -->
+<!-- ========================================== -->
+<div class="modal fade" id="lightboxModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-xl">
+        <div class="modal-content bg-transparent border-0">
+            <div class="modal-body p-0 position-relative text-center">
+                <button type="button" class="btn-close btn-close-white position-absolute top-0 end-0 m-3 z-3 bg-dark bg-opacity-75 p-2 rounded-circle shadow" data-bs-dismiss="modal" aria-label="Close"></button>
+                <img id="lightboxImg" src="" alt="Fullscreen Foto Rumah" class="img-fluid rounded-4 shadow-lg" style="max-height: 85vh; object-fit: contain; background: #111;">
             </div>
         </div>
     </div>
@@ -486,7 +526,49 @@
         $(element).addClass('border-primary border-3');
     }
 
+    // Fullscreen Lightbox Preview
+    function openLightbox() {
+        var currentSrc = $('#mainGalleryImg').attr('src');
+        if (currentSrc) {
+            $('#lightboxImg').attr('src', currentSrc);
+            var modalEl = document.getElementById('lightboxModal');
+            if (modalEl) {
+                var modal = new bootstrap.Modal(modalEl);
+                modal.show();
+            }
+        }
+    }
+
+    // Copy Property Link with Clean Toast Feedback
+    function copyPropertyUrl() {
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+            navigator.clipboard.writeText(window.location.href).then(function() {
+                if (typeof window.showToast === 'function') {
+                    window.showToast('Tautan rumah berhasil disalin ke clipboard!', 'bi-check2-circle', 'text-success');
+                }
+            }).catch(function() {
+                fallbackCopyUrl();
+            });
+        } else {
+            fallbackCopyUrl();
+        }
+    }
+
+    function fallbackCopyUrl() {
+        var dummy = document.createElement('input');
+        document.body.appendChild(dummy);
+        dummy.value = window.location.href;
+        dummy.select();
+        document.execCommand('copy');
+        document.body.removeChild(dummy);
+        if (typeof window.showToast === 'function') {
+            window.showToast('Tautan rumah berhasil disalin ke clipboard!', 'bi-check2-circle', 'text-success');
+        }
+    }
+
     $(document).ready(function() {
+        // Safe-area padding for mobile sticky bottom bar
+        $('body').addClass('has-bottom-bar');
         // ==========================================
         // 1. CLIENT-SIDE KPR CALCULATOR (RUMAH123 LOGIC)
         // ==========================================

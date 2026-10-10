@@ -331,6 +331,24 @@ $isAdminLoggedIn = session()->get('is_admin_logged_in') ?? false;
             background: var(--bs-primary);
             color: #ffffff;
         }
+
+        /* Mobile adjustments for Floating Widgets & Bottom Bar */
+        @media (max-width: 767.98px) {
+            .va-floating-btn {
+                bottom: 82px;
+                right: 18px;
+                width: 54px;
+                height: 54px;
+            }
+            .va-chat-box {
+                bottom: 144px;
+                right: 12px;
+                max-width: calc(100vw - 24px);
+            }
+            .has-bottom-bar {
+                padding-bottom: 74px !important;
+            }
+        }
     </style>
     
     <!-- Design Tokens & Theme Presets (Industrialist vs Brutalist) -->
@@ -697,9 +715,33 @@ $isAdminLoggedIn = session()->get('is_admin_logged_in') ?? false;
         </div>
     </div>
 
+    <!-- GLOBAL TOAST UI NOTIFICATION -->
+    <div class="toast-container position-fixed top-0 end-0 p-3" style="z-index: 1090;">
+        <div id="globalAppToast" class="toast align-items-center text-bg-dark border-0 shadow-lg rounded-3" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="d-flex">
+                <div class="toast-body d-flex align-items-center gap-2" id="globalToastBody">
+                    <i class="bi bi-info-circle-fill text-info"></i> <span>Pemberitahuan</span>
+                </div>
+                <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+        </div>
+    </div>
+
     <!-- Scripts -->
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        // Global Toast Notification Helper
+        window.showToast = function(msg, icon = 'bi-check-circle-fill', iconColor = 'text-success') {
+            var toastEl = document.getElementById('globalAppToast');
+            if (toastEl) {
+                $('#globalToastBody').html('<i class="bi ' + icon + ' ' + iconColor + ' fs-6"></i> <span>' + msg + '</span>');
+                var toast = new bootstrap.Toast(toastEl, { delay: 2500 });
+                toast.show();
+            }
+        };
+    </script>
 
     <script>
         $(document).ready(function() {

@@ -183,15 +183,15 @@
                                         <tr>
                                             <td>
                                                 <span class="fw-medium text-dark d-block text-truncate" style="max-width: 320px;">
-                                                    <?= esc(!empty($page['page_title']) ? $page['page_title'] : $page['page_url']) ?>
+                                                    <?= esc(!empty($page['page_title']) ? $page['page_title'] : ($page['page_url'] ?? 'Halaman')) ?>
                                                 </span>
-                                                <code class="small text-muted" style="font-size: 0.72rem;"><?= esc($page['page_url']) ?></code>
+                                                <code class="small text-muted" style="font-size: 0.72rem;"><?= esc($page['page_url'] ?? '') ?></code>
                                             </td>
                                             <td class="text-end fw-bold text-primary">
-                                                <?= number_format($page['views']) ?> <small class="text-muted fw-normal">views</small>
+                                                <?= number_format((int) ($page['views'] ?? 0)) ?> <small class="text-muted fw-normal">views</small>
                                             </td>
                                             <td class="text-end">
-                                                <a href="<?= base_url(ltrim($page['page_url'], '/')) ?>" target="_blank" class="btn btn-xs btn-outline-secondary py-0 px-2" title="Buka Halaman">
+                                                <a href="<?= base_url(ltrim((string) ($page['page_url'] ?? ''), '/')) ?>" target="_blank" class="btn btn-xs btn-outline-secondary py-0 px-2" title="Buka Halaman">
                                                     <i class="bi bi-box-arrow-up-right"></i>
                                                 </a>
                                             </td>
