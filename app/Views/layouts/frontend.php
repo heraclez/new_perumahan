@@ -525,9 +525,6 @@ $isAdminLoggedIn = session()->get('is_admin_logged_in') ?? false;
                     <li class="nav-item">
                         <a class="nav-link <?= str_starts_with(uri_string(), 'blog') || str_starts_with(uri_string(), 'artikel') ? 'active fw-bold text-primary' : '' ?>" href="<?= site_url('blog') ?>">Artikel &amp; Info</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="<?= site_url('/#kontak') ?>">Kontak</a>
-                    </li>
                     <li class="nav-item ms-lg-2">
                         <a class="btn btn-primary px-3 py-2 rounded-pill d-flex align-items-center gap-2" href="https://wa.me/<?= esc($companyWa) ?>?text=Halo%20<?= urlencode($companyName) ?>,%20saya%20tertarik%20dengan%20properti%20Anda." target="_blank">
                             <i class="bi bi-whatsapp"></i> Hubungi Kami
