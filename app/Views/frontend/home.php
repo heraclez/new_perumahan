@@ -843,9 +843,9 @@
                         <a href="https://wa.me/<?= esc($settings['company_whatsapp'] ?? '') ?>?text=Halo%20<?= urlencode($settings['company_name'] ?? 'Grand Harmoni') ?>,%20saya%20ingin%20jadwal%20survey%20lokasi." target="_blank" class="btn btn-light text-primary btn-lg rounded-pill px-4 fw-bold">
                             <i class="bi bi-whatsapp me-2"></i> <?= esc($ctaBtn1) ?>
                         </a>
-                        <a href="<?= site_url($ctaLink2) ?>" class="btn btn-outline-light btn-lg rounded-pill px-4">
+                        <button type="button" class="btn btn-outline-light btn-lg rounded-pill px-4" data-bs-toggle="modal" data-bs-target="#modalCatalogLead">
                             <i class="bi bi-file-earmark-pdf me-2"></i> <?= esc($ctaBtn2) ?>
-                        </a>
+                        </button>
                     </div>
                 </div>
             </section>
